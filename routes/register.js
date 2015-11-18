@@ -24,8 +24,8 @@ router.get('/', function(req, res) {
 /* GET home page. */
 router.post('/', function(req, res) {
   var hash = bcrypt.hashSync(req.body.password);
-  var queryStr = "INSERT INTO users (username, hash) VALUES ($1, $2)";
-  var parameters = [req.body.username, hash];
+  var queryStr = "INSERT INTO users (username, hash, email, name) VALUES ($1, $2, $3, $4)";
+  var parameters = [req.body.username, hash, req.body.email, req.body.heiti];
   var clean = xss(req.body.username);
   clean = xss(req.body.password);
 
@@ -63,7 +63,7 @@ router.post('/', function(req, res) {
       registered = false;
     }
 
-    registered = true
+    registered = true;
 
     res.render('register', {registered:registered,
                             nousername:nousername,

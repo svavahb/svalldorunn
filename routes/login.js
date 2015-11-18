@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
       loggedin = false;
       res.render('login', {error:error,
                            loggedin:loggedin});
-      return console.error('error fetching client from pool', err);
+      return console.error('!user', err);
     }
 
     if (user) {
@@ -54,7 +54,7 @@ router.post('/', function(req, res) {
         loggedin = false;
         res.render('login', {error:error,
                              loggedin:loggedin});
-        return console.error('error fetching client from pool', err);
+        return console.error('!hashtrue', err);
       }
       // Regenerate session when signing in
       // to prevent fixation
