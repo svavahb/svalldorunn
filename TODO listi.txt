@@ -5,3 +5,31 @@ o Setja profile-mynd (af netinu)
 o Flokkun þráða
 o "þínir þræðir"
 o comment á comment
+
+
+CREATE TABLE public.entries
+(
+  username text,
+  id integer NOT NULL DEFAULT nextval('entries_id_seq'::regclass),
+  entry text,
+  date timestamp with time zone,
+  CONSTRAINT entries_pkey PRIMARY KEY (id)
+)
+
+CREATE TABLE public.threads
+(
+  threadname text NOT NULL,
+  CONSTRAINT threads_pkey PRIMARY KEY (threadname)
+)
+
+REATE TABLE public.users
+(
+  username text NOT NULL,
+  id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+  hash text,
+  email text,
+  name text,
+  CONSTRAINT users_pkey PRIMARY KEY (id, username),
+  CONSTRAINT users_email_key UNIQUE (email),
+  CONSTRAINT users_username_key UNIQUE (username)
+)
