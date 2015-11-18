@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
 /* GET home page. */
 router.post('/', function(req, res) {
   var hash = bcrypt.hashSync(req.body.password);
-  var queryStr = "INSERT INTO users (username, hash) VALUES ($1, $2)";
+  var queryStr = "INSERT INTO users (username, password) VALUES ($1, $2)";
   var parameters = [req.body.username, hash];
   var clean = xss(req.body.username);
   clean = xss(req.body.password);
