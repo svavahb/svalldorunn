@@ -1,7 +1,7 @@
-o Búa til nıjan şráğ
-o Form viğ nıskráningu
-o Heimasvæği
-o Setja profile-mynd (af netinj)
-o Flokkun şráğa
-o "şínir şræğir"
-o comment á comment
+o BÃºa til nÃ½jann Ã¾rÃ¡Ã°
+o Form viÃ° nÃ½skrÃ¡ningu
+o HeimasvÃ¦Ã°i
+o Setja profile-mynd (af netinu)
+o Flokkun Ã¾rÃ¡Ã°a
+o "Ã¾Ã­nir Ã¾rÃ¦Ã°ir"
+o comment Ã¡ comment
