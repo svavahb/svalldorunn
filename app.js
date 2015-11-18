@@ -18,7 +18,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var entries = require('./routes/entries');
 //dotenv
-var dotenv = require('dotenv').load();
+//var dotenv = require('dotenv').load();
 
 
 // initialize express
