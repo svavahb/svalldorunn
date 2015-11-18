@@ -1,0 +1,50 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px; }
+
+body {
+  padding: 50px;
+  font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+header {
+  display: flex;
+  border-bottom: 2px solid #f1f1f1; }
+  header .left {
+    flex: 4; }
+  header .right {
+    flex: 1; }
+    header .right img {
+      width: 100%; }
+
+main {
+  padding: 20px; }
+
+.link {
+  color: black; }
+
+.link:hover {
+  border-bottom: 2px solid #f1f1f1; }
+
+ul {
+  list-style-type: none; }
+
+.entries {
+  padding-top: 20px; }
+
+.xss-holder {
+  background-color: white;
+  color: black;
+  height: 100px;
+  width: 100%; }
+
+#postuser {
+  font-size: 25px;
+  text-decoration: underline;
+  padding-top: 20px; }
+
+#postdate {
+  font-size: 10px; }
+
+#postentry {
+  font-size: 20px;
+  padding-top: 10px; }

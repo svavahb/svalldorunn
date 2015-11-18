@@ -1,0 +1,31 @@
+doctype html
+html(lang="is")
+  head
+    title= title
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet")
+    link(rel='stylesheet' href='/dist/stylesheets/styles.css')
+  
+  body
+      
+    header
+      
+      .left
+        h1 Heilsuátak Nördanna
+        ul.list-inline
+          if (loggedin == false)
+            li: a(href='/' class='link').btn FORSÍÐA
+            li: a(href='/login' class='link').btn INNSKRÁ
+            li: a(href='/register' class='link').btn NÝSKRÁ
+            
+        ul.list-inline
+          if (loggedin == true)
+            li: a(href='/logout' class='link').btn ÚTSKRÁ
+      
+      .right
+            img(src='/images/brain.png')
+          
+      
+    main      
+      block content
+    
+  script(src="/javascripts/frontend.js")

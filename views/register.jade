@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  
+  if (error == true)
+    p(class='alert alert-danger') Notendanafn þegar til!
+  if(nousername == true)
+    p(class='alert alert-danger') Notendanafn vantar!
+  if(nopassword == true)
+    p(class='alert alert-danger') Lykilorð vantar!
+  if (registered == true) 
+    p(class='alert alert-success') Skráning tókst!!!
+  
+  else
+  
+    form.form-group(method="post")
+    
+        label(for="username") Notendanafn:
+        input(id="username" 
+          type="text" 
+          placeholder="notendanafn" 
+          name="username"
+          class="form-control"
+          )
+        br
+
+        label(for="password") Lykilorð:
+        input(id="password" 
+          type="password" 
+          name="password" 
+          placeholder="lykilorð"
+          class="form-control"
+          )
+        br
+          
+        button(type='submit'
+              value='submit'
+              class='btn btn-success'
+              ) Nýskrá

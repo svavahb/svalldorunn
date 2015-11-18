@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  
+  if(loggedin==true)
+  
+    p Þú ert skráður inn sem #{usern}!!
+  
+    form.form-group(method='post' action='/entries')
+  
+      textarea(id='textarea'
+        class='form-control'
+        name='textarea'
+        )
+      br
+        
+      button(type='submit'
+            value='submit'
+            class='btn btn-success'
+            ) Setja inn færslu!
+      br
+      
+      if entries
+        ul(class="entries")
+          each u in entries.rows   
+            li
+              p#postuser #{u.username}
+              p#postdate #{u.date}
+              p#postentry #{u.entry}
+            
+            
+      
+            
