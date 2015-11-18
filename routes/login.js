@@ -22,8 +22,8 @@ router.post('/', function(req, res) {
 
   var username = "SELECT * FROM users WHERE username = $1";
   var parameters = [req.body.username];
-  var clean = xss(req.body.username);
-  clean = xss(req.body.password);
+  /*var clean = xss(req.body.username);
+  clean = xss(req.body.password);*/
 
   dbUtils.queryDb(username, parameters, function(err,result) {
     if(err) {

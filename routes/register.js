@@ -34,36 +34,43 @@ router.post('/', function(req, res) {
   nameput = req.body.heiti;
   emailput = req.body.email;
 
+  if(usernameput === ""){
+    var nousername = true;
+    registered = false;
+  }
+
+  if(passwordput === ""){
+    var nopassword = true;
+    registered = false;
+  }
+
+  if(!validate.length1(req.body.heiti, 3)){
+    nameerror = false;
+    registered = false;
+  }
+  if(!validate.isEmail(req.body.email)){
+    emailerror = false;
+    registered = false;
+  }
+
+  else {
+  registered = true
+
+
   dbUtils.queryDb(queryStr, parameters, function(err) {
     if(err) {
       var error = true;
       registered = false;
       res.render('register', {registered:registered,
                               error:error,
-                              loggedin:loggedin});
+                              loggedin:loggedin,
+                              usernameput:usernameput,
+                              emailput:emailput,
+                              nameput:nameput});
       return console.error('error fetching client from pool', err);
     }
-
-    if(usernameput === ""){
-      var nousername = true;
-      registered = false;
-    }
-
-    if(passwordput === ""){
-      var nopassword = true;
-      registered = false;
-    }
-
-    if(!validate.length1(req.body.heiti, 3)){
-      nameerror = false;
-      registered = false;
-    }
-    if(!validate.isEmail(req.body.email)){
-      emailerror = false;
-      registered = false;
-    }
-
-    registered = true;
+  });
+}
 
     res.render('register', {registered:registered,
                             nousername:nousername,
@@ -74,8 +81,7 @@ router.post('/', function(req, res) {
                             usernameput:usernameput,
                             emailput:emailput,
                             nameput:nameput});
-    return console.error('error fetching client from pool', err);
-  });
+    //return console.error('error fetching client from pool', err);
 });
 
 
