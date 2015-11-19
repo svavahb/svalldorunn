@@ -68,11 +68,14 @@ block content
       input(
         id="password" 
         type="password" 
-        name="password" 
+        name="password2" 
         placeholder="lykilorð"
         class="form-control"
         )
       br
+      if(passworderror == true)
+        p(class='alert alert-danger') Lykilorð ekki eins!
+      
         
       button(type='submit'
             value='submit'

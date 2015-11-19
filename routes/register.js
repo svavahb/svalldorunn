@@ -7,13 +7,18 @@ var bcrypt = require('bcrypt-nodejs');
 var xss = require('xss');
 var router = express.Router();
 var loggedin = false;
-var registered = false;
+var registered = true;
 var nameerror, emailerror;
 var usernameerror, emerror;
-var usernameput, passwordput, nameput, emailput;
+var usernameput, passwordput, passwordput2, nameput, emailput;
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  nameerror = true;
+  emailerror = true;
+  usernameerror = false;
+  emerror = false;
+  registered = true;
   res.render('register', {loggedin:loggedin,
                           usernameput : '',
                           passwordput : '',
@@ -27,9 +32,13 @@ router.post('/', function(req, res) {
   clean = xss(req.body.password);
   nameerror = true;
   emailerror = true;
+  usernameerror = false;
+  emerror = false;
+  registered = true;
 
   usernameput = req.body.username;
   passwordput = req.body.password;
+  passwordput2 = req.body.password2;
   nameput = req.body.heiti;
   emailput = req.body.email;
 
@@ -38,77 +47,45 @@ router.post('/', function(req, res) {
     registered = false;
   }
 
-  if(passwordput === ""){
+  if(!validate.length1(passwordput, 1)){
     var nopassword = true;
     registered = false;
   }
 
-  if(!validate.length1(req.body.heiti, 3)){
+  if(!validate.length1(nameput, 3)){
     nameerror = false;
     registered = false;
   }
   if(!validate.isEmail(req.body.email)){
     emailerror = false;
     registered = false;
-    /*res.render('register', {registered:registered,
-                            nousername:nousername,
-                            nopassword:nopassword,
-                            nameerror:nameerror,
-                            emailerror:emailerror,
-                            loggedin:loggedin,
-                            usernameput:usernameput,
-                            emailput:emailput,
-                            nameput:nameput,
-                            usernameerror:usernameerror,
-                            emerror:emerror});*/
+  }
+  if(passwordput!==passwordput2){
+    var passworderror = true;
+    registered = false;
   }
 
-  /*else {*/
 
-  var queryStr = "SELECT username,email FROM users WHERE username=$1 AND email=$2";
-  var parameters = [req.body.username, req.body.email];
-  dbUtils.queryDb(queryStr, parameters, function(err, results) {
-    if(err) {
-      if(err.constraint=='users_username_key') {
-        console.log("AAAAH");
-      }
-      usernameerror=true;
-      emerror=true;
-      registered = false;
-      res.render('register', {registered:registered,
-                              nousername:nousername,
-                              nopassword:nopassword,
-                              nameerror:nameerror,
-                              emailerror:emailerror,
-                              loggedin:loggedin,
-                              usernameput:usernameput,
-                              emailput:emailput,
-                              nameput:nameput,
-                              usernameerror:usernameerror,
-                              emerror:emerror});
-      return console.error('error fetching client from pool', err);
-    }
-    /*var user =  results.rows[0];
-    if(user) {
-      error=true;
-      registered=false;
-      res.render('register', {registered:registered,
-                              error:error,
-                              usernameput:usernameput,
-                              emailput:emailput,
-                              nameput:nameput});
-    }*/
-    else
-    {
+
       var hash = bcrypt.hashSync(req.body.password);
-      queryStr = "INSERT INTO users (username, hash, email, name) VALUES ($1, $2, $3, $4)";
-      parameters = [req.body.username, hash, req.body.email, req.body.heiti];
+      var queryStr = "INSERT INTO users (username, hash, email, name) VALUES ($1, $2, $3, $4)";
+      var parameters = [req.body.username, hash, req.body.email, req.body.heiti];
 
+      if(registered == true){
       dbUtils.queryDb(queryStr, parameters, function(err) {
         if(err) {
-          registered = false;
-          usernameerror = true;
-          emerror = true;
+          if((/.*(username).*/).test(err)) {
+            usernameerror = true;
+            registered=false;
+          }
+          else {usernameerror=false;}
+          if((/.*(email).*/).test(err)) {
+            emerror = true;
+            registered=false;
+          }
+          else {emerror=false;}
+
+          console.log("hæ");
           res.render('register', {registered:registered,
                                   nousername:nousername,
                                   nopassword:nopassword,
@@ -119,11 +96,10 @@ router.post('/', function(req, res) {
                                   emailput:emailput,
                                   nameput:nameput,
                                   usernameerror:usernameerror,
-                                  emerror:emerror});
+                                  emerror:emerror,
+                                  passworderror:passworderror});
           return console.error('error fetching client from pool', err);
         }
-
-        registered = true;
         res.render('register', {registered:registered,
                                 nousername:nousername,
                                 nopassword:nopassword,
@@ -132,15 +108,27 @@ router.post('/', function(req, res) {
                                 loggedin:loggedin,
                                 usernameput:usernameput,
                                 emailput:emailput,
-                                nameput:nameput});
-
+                                nameput:nameput,
+                                usernameerror:usernameerror,
+                                emerror:emerror,
+                                passworderror:passworderror});
       });
+    }
+    else {
 
-    //return console.error('error fetching client from pool', err);
-  }
-});
-//}
-});
+        res.render('register', {registered:registered,
+                                nousername:nousername,
+                                nopassword:nopassword,
+                                nameerror:nameerror,
+                                emailerror:emailerror,
+                                loggedin:loggedin,
+                                usernameput:usernameput,
+                                emailput:emailput,
+                                nameput:nameput,
+                                passworderror:passworderror});
+                              }
+  });
+
 
 
 
