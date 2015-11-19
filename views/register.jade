@@ -34,6 +34,8 @@ block content
       br
       if (emailerror === false)
         p(class='alert alert-danger') Villa í e-maili!
+      if (emerror === true)
+        p(class='alert alert-danger') E-mail þegar skráð!
   
       label(for="username") Notendanafn:
       input(
@@ -47,7 +49,7 @@ block content
       br
       if(nousername == true)
         p(class='alert alert-danger') Notendanafn vantar!
-      if (error == true)
+      if (usernameerror == true)
         p(class='alert alert-danger') Notendanafn þegar til!
 
       label(for="password") Lykilorð:

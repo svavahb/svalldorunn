@@ -8,9 +8,8 @@ var xss = require('xss');
 var router = express.Router();
 var loggedin = false;
 var registered = false;
-var nameerror = true;
-var emailerror = true;
-var error;
+var nameerror, emailerror;
+var usernameerror, emerror;
 var usernameput, passwordput, nameput, emailput;
 
 /* GET home page. */
@@ -26,6 +25,8 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   var clean = xss(req.body.username);
   clean = xss(req.body.password);
+  nameerror = true;
+  emailerror = true;
 
   usernameput = req.body.username;
   passwordput = req.body.password;
@@ -49,41 +50,80 @@ router.post('/', function(req, res) {
   if(!validate.isEmail(req.body.email)){
     emailerror = false;
     registered = false;
+    /*res.render('register', {registered:registered,
+                            nousername:nousername,
+                            nopassword:nopassword,
+                            nameerror:nameerror,
+                            emailerror:emailerror,
+                            loggedin:loggedin,
+                            usernameput:usernameput,
+                            emailput:emailput,
+                            nameput:nameput,
+                            usernameerror:usernameerror,
+                            emerror:emerror});*/
   }
 
-  else {
-  var queryStr = "SELECT username FROM users WHERE username=$1";
-  var parameters = [req.body.username];
+  /*else {*/
+
+  var queryStr = "SELECT username,email FROM users WHERE username=$1 AND email=$2";
+  var parameters = [req.body.username, req.body.email];
   dbUtils.queryDb(queryStr, parameters, function(err, results) {
     if(err) {
-      return console.error('error fetching client from pool', err);
-    }
-    if(results.rows[0]!==null) {
-      error=true;
+      if(err.constraint=='users_username_key') {
+        console.log("AAAAH");
+      }
+      usernameerror=true;
+      emerror=true;
+      registered = false;
       res.render('register', {registered:registered,
-                              error:error,
+                              nousername:nousername,
+                              nopassword:nopassword,
+                              nameerror:nameerror,
+                              emailerror:emailerror,
                               loggedin:loggedin,
                               usernameput:usernameput,
                               emailput:emailput,
-                              nameput:nameput});
+                              nameput:nameput,
+                              usernameerror:usernameerror,
+                              emerror:emerror});
+      return console.error('error fetching client from pool', err);
     }
-    else {
+    /*var user =  results.rows[0];
+    if(user) {
+      error=true;
+      registered=false;
+      res.render('register', {registered:registered,
+                              error:error,
+                              usernameput:usernameput,
+                              emailput:emailput,
+                              nameput:nameput});
+    }*/
+    else
+    {
       var hash = bcrypt.hashSync(req.body.password);
       queryStr = "INSERT INTO users (username, hash, email, name) VALUES ($1, $2, $3, $4)";
       parameters = [req.body.username, hash, req.body.email, req.body.heiti];
-      registered = true;
 
       dbUtils.queryDb(queryStr, parameters, function(err) {
         if(err) {
           registered = false;
+          usernameerror = true;
+          emerror = true;
           res.render('register', {registered:registered,
-                                  error:error,
+                                  nousername:nousername,
+                                  nopassword:nopassword,
+                                  nameerror:nameerror,
+                                  emailerror:emailerror,
                                   loggedin:loggedin,
                                   usernameput:usernameput,
                                   emailput:emailput,
-                                  nameput:nameput});
+                                  nameput:nameput,
+                                  usernameerror:usernameerror,
+                                  emerror:emerror});
           return console.error('error fetching client from pool', err);
         }
+
+        registered = true;
         res.render('register', {registered:registered,
                                 nousername:nousername,
                                 nopassword:nopassword,
@@ -93,10 +133,13 @@ router.post('/', function(req, res) {
                                 usernameput:usernameput,
                                 emailput:emailput,
                                 nameput:nameput});
-  });
+
+      });
 
     //return console.error('error fetching client from pool', err);
   }
+});
+//}
 });
 
 
