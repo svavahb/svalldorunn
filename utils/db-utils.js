@@ -1,4 +1,5 @@
 'use strict';
+
 var pg = require('pg');
 //var database = 'postgres://mfjipppstqpouz:aA2AfuGMungbamweau7SCtwcjM@ec2-54-217-240-205.eu-west-1.compute.amazonaws.com:5432/de06nqtrlg1lkt';
 var database = 'postgres://postgres:lalli@localhost/svalldorunn';
