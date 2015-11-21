@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 Halló 
+    
+  if(imageset==true)
+    img(src=imagelink)
+  else
+    img(src='http://oi64.tinypic.com/5o5nc0.jpg')
+    
+  p Þú ert skráður inn sem #{renderData.user.name}!!
+  p Notendanafnið þitt er: #{renderData.user.username}
+  p Skráð e-mail: #{renderData.user.email}
+    
