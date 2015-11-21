@@ -1,10 +1,14 @@
 o Búa til nýjann þráð
-o Form við nýskráningu
+X Form við nýskráningu
 o Heimasvæði
 o Setja profile-mynd (af netinu)
 o Flokkun þráða
 o "þínir þræðir"
 o comment á comment
+o breyta upplýsingum
+o usermynd á þræði
+
+
 
 
 CREATE TABLE public.entries
@@ -29,6 +33,7 @@ REATE TABLE public.users
   hash text,
   email text,
   name text,
+  image text,
   CONSTRAINT users_pkey PRIMARY KEY (id, username),
   CONSTRAINT users_email_key UNIQUE (email),
   CONSTRAINT users_username_key UNIQUE (username)

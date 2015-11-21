@@ -20,6 +20,8 @@ html(lang="is")
         ul.list-inline
           if (loggedin == true)
             li: a(href='/logout' class='link').btn ÚTSKRÁ
+            li: a(href='/profile/#{usern}' class='link').btn PRÓFÍLL
+            li: a(href='/entries' class='link').btn ÞRÆÐIR
       
       .right
             img(src='/images/brain.png')

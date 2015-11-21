@@ -5,25 +5,42 @@ block content
   if(loggedin==true)
   
     p Þú ert skráður inn sem #{usern}!!
-  
+
+      
+    button(type='submit'
+          value='submit'
+          class='btn btn-success'
+          method='get'
+          ) Búa til nýjann þráð!
+    br
+      
+    
     form.form-group(method='post' action='/entries')
   
-      textarea(id='textarea'
-        class='form-control'
-        name='textarea'
-        )
-      br
-        
-      button(type='submit'
-            value='submit'
-            class='btn btn-success'
-            ) Setja inn færslu!
-      br
+      if(createThread==true)
+      
+        textarea(id='textarea'
+                class='form-control'
+                name='textarea'
+                )
+              br
+      
+        button(type='submit'
+              value='submit'
+              class='btn btn-success'
+              ) Búa til nýjann þráð!
+            br
+      
       
       if entries
         ul(class="entries")
           each u in entries.rows   
             li
+              
+                if(imageset==true)
+                  img(src=session.user.image)
+                else
+                  img(src='http://oi64.tinypic.com/5o5nc0.jpg')
               p#postuser #{u.username}
               p#postdate #{u.date}
               p#postentry #{u.entry}

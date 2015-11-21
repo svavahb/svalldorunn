@@ -6,35 +6,8 @@ var dbUtils = require('../utils/db-utils');
 var loggedin = true;
 var xss = require('xss');
 
-router.get('/', ensureLoggedIn, prufurender, login);
+router.get('/', ensureLoggedIn, prufurender);
 router.post('/',postEntries, prufurender);
-
-
-function login(req, res){
-  var renderData = {};
-  var username = "SELECT * FROM users WHERE username = $1";
-  var parameters = [req.params.username];
-  var loggedin = false;
-
-
-  dbUtils.queryDb(username, parameters, function(err, results){
-    if(err) {
-      return console.error('error fetching client from pool', err);
-    }
-
-    renderData.user = results.rows[0];
-
-    if(req.session && req.session.user &&
-       req.session.user.username === req.params.username) {
-         console.info(req.session.user);
-         loggedin = true;
-         var usern = [req.params.username];
-      res.render('entries', {loggedin:loggedin,
-                             usern:usern
-      });
-    }
-  });
-}
 
 function ensureLoggedIn(req, res, next){
     if(req.session.user){
@@ -49,6 +22,7 @@ function prufurender(req, res) {
     var login = "select * FROM entries ORDER BY date DESC LIMIT 20";
     console.log(req.session);
     var parameters = [];
+    var createThread;
 
     dbUtils.queryDb(login, parameters, function(err,result) {
       if(err) {
@@ -56,13 +30,21 @@ function prufurender(req, res) {
         return console.error('error fetching client from pool', err);
       }
       var entries = result;
+      var imageset;
       var usern = req.session.user.username;
 
+      if(req.session.user.image===null) {
+        imageset=false;
+      }
+      else {
+        imageset=true;
+      }
 
     res.render('entries', {session : req.session,
                           loggedin:loggedin,
                           entries:entries,
-                          usern:usern});
+                          usern:usern,
+                          imageset:imageset});
     });
 }
 
