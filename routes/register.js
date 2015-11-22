@@ -10,7 +10,7 @@ var loggedin = false;
 var registered = true;
 var nameerror, emailerror;
 var usernameerror, emerror;
-var usernameput, passwordput, passwordput2, nameput, emailput;
+var usernameput, passwordput, passwordput2, nameput, emailput, imageput;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -23,7 +23,8 @@ router.get('/', function(req, res) {
                           usernameput : '',
                           passwordput : '',
                           nameput : '',
-                          emailput : ''});
+                          emailput : '',
+                          imageput : ''});
 });
 
 /* GET home page. */
@@ -41,6 +42,7 @@ router.post('/', function(req, res) {
   passwordput2 = req.body.password2;
   nameput = req.body.heiti;
   emailput = req.body.email;
+  imageput = req.body.image;
 
   if(usernameput === ""){
     var nousername = true;
@@ -95,7 +97,8 @@ router.post('/', function(req, res) {
                                   nameput:nameput,
                                   usernameerror:usernameerror,
                                   emerror:emerror,
-                                  passworderror:passworderror});
+                                  passworderror:passworderror,
+                                  imageput:imageput});
           return console.error('error fetching client from pool', err);
         }
         res.render('register', {registered:registered,
@@ -109,7 +112,8 @@ router.post('/', function(req, res) {
                                 nameput:nameput,
                                 usernameerror:usernameerror,
                                 emerror:emerror,
-                                passworderror:passworderror});
+                                passworderror:passworderror,
+                                imageput:imageput});
       });
     }
     else {
@@ -123,7 +127,8 @@ router.post('/', function(req, res) {
                                 usernameput:usernameput,
                                 emailput:emailput,
                                 nameput:nameput,
-                                passworderror:passworderror});
+                                passworderror:passworderror,
+                                imageput:imageput});
                               }
   });
 

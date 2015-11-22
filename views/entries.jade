@@ -5,38 +5,46 @@ block content
   if(loggedin==true)
   
     p Þú ert skráður inn sem #{usern}!!
+    
+    script.
+      function show(){
+        console.log('hæ');
+        document.getElementById("createThread").classList.remove('hidden');
+        document.getElementById('bla').classList.add('hidden');
+      }
 
       
     button(type='submit'
           value='submit'
           class='btn btn-success'
-          method='get'
+          onclick='show()'
+          id='bla'
           ) Búa til nýjann þráð!
     br
       
     
     form.form-group(method='post' action='/entries')
   
-      if(createThread==true)
+      div.hidden#createThread
       
         textarea(id='textarea'
                 class='form-control'
                 name='textarea'
                 )
-              br
+        br
       
         button(type='submit'
               value='submit'
               class='btn btn-success'
               ) Búa til nýjann þráð!
-            br
+        br
       
       
       if entries
         ul(class="entries")
           each u in entries.rows   
             li
-              
+              //
                 if(imageset==true)
                   img(src=session.user.image)
                 else
