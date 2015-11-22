@@ -1,0 +1,9 @@
+extends layout
+
+block content
+
+  if threads
+    ul(class="entries")
+      each u in threads.rows   
+        li
+          a(href='/entries/#{u.id}')#postuser #{u.threadname}
