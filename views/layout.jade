@@ -10,7 +10,7 @@ html(lang="is")
     header
       
       .left
-        h1 Heilsuátak Nördanna
+        h1 Svalldórunn 
         ul.list-inline
           if (loggedin == false)
             li: a(href='/' class='link').btn FORSÍÐA
@@ -19,12 +19,15 @@ html(lang="is")
             
         ul.list-inline
           if (loggedin == true)
-            li: a(href='/logout' class='link').btn ÚTSKRÁ
             li: a(href='/profile/#{usern}' class='link').btn PRÓFÍLL
             li: a(href='/entries' class='link').btn ÞRÆÐIR
       
       .right
-            img(src='/images/brain.png')
+          img(src='/images/brain.png')
+          
+        ul.list-inline
+          if (loggedin == true)
+            li: a(href='/logout' class='link').btn ÚTSKRÁ
           
       
     main      

@@ -6,8 +6,18 @@ var dbUtils = require('../utils/db-utils');
 var loggedin = true;
 var xss = require('xss');
 
-router.get('/:username',login, ensureLoggedIn);
+router.get('/:username', ensureLoggedIn ,login);
 router.post('/');
+
+function ensureLoggedIn(req, res, next){
+  console.log("ensurefall");
+  if(req.session.user){
+  next();
+  }
+  else{
+    res.redirect('/login');
+  }
+}
 
 function login(req, res){
   console.log("loginfall");
@@ -48,17 +58,5 @@ function login(req, res){
     }
   });
 }
-
-function ensureLoggedIn(req, res, next){
-  console.log("ensurefall");
-    if(req.session.user){
-    next();
-    }
-    else{
-      res.redirect('/login');
-    }
-}
-
-
 
 module.exports = router;

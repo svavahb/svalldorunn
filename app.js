@@ -18,6 +18,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var entries = require('./routes/entries');
 var profile = require('./routes/profile');
+var moment = require('moment');
 //dotenv
 //var dotenv = require('dotenv').load();
 
@@ -39,6 +40,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // initialize cookie parser
 app.use(cookieParser());
+
+app.locals.moment = moment;
 
 var session = require('express-session');
 app.use(session({

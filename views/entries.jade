@@ -50,7 +50,7 @@ block content
                 else
                   img(src='http://oi64.tinypic.com/5o5nc0.jpg')
               p#postuser #{u.username}
-              p#postdate #{u.date}
+              p#postdate= moment(u.date).calendar()
               p#postentry #{u.entry}
             
             
