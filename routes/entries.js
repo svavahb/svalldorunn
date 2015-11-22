@@ -6,7 +6,7 @@ var dbUtils = require('../utils/db-utils');
 var loggedin = true;
 var xss = require('xss');
 
-router.get('/', ensureLoggedIn, prufurender);
+router.get('/:id', ensureLoggedIn, prufurender);
 router.post('/',postEntries, prufurender);
 
 function ensureLoggedIn(req, res, next){
@@ -19,9 +19,10 @@ function ensureLoggedIn(req, res, next){
 }
 
 function prufurender(req, res) {
-    var login = "select * FROM entries ORDER BY date DESC LIMIT 20";
+    var login = "select * FROM entries WHERE threadid=$1 ORDER BY date DESC LIMIT 20";
     console.log(req.session);
-    var parameters = [];
+    console.log(req.params.id);
+    var parameters = [req.params.id];
     var createThread;
 
     dbUtils.queryDb(login, parameters, function(err,result) {
@@ -49,8 +50,8 @@ function prufurender(req, res) {
 }
 
 function postEntries(req, res, next) {
-  var entrie = "INSERT INTO entries (username, entry, date) VALUES ($1, $2, $3)";
-  var info = [req.session.user.username, req.body.textarea, new Date()];
+  var entrie = "INSERT INTO entries (username, entry, date, threadid) VALUES ($1, $2, $3, $4)";
+  var info = [req.session.user.username, req.body.textarea, new Date(), req.params.id];
   var clean = xss(req.body.textarea);
 
   dbUtils.queryDb(entrie, info, function(err) {
