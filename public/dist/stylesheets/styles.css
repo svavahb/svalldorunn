@@ -3,21 +3,29 @@ html {
   font-size: 10px; }
 
 body {
-  padding: 50px;
   font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 header {
+  background-image: url(/images/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  padding-left: 10%;
+  padding-top: 5%;
+  margin: 0;
+  width: 100%;
   display: flex;
   border-bottom: 2px solid #f1f1f1; }
   header .left {
-    flex: 4; }
-  header .right {
     flex: 1; }
-    header .right img {
-      width: 100%; }
+  header .right {
+    padding-top: 5%;
+    padding-left: 45%;
+    flex: 1; }
 
 main {
-  padding: 20px; }
+  padding: 10%;
+  padding-top: 190px; }
 
 footer {
   border-top: 2px solid #f1f1f1; }

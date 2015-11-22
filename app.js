@@ -18,6 +18,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var entries = require('./routes/entries');
 var profile = require('./routes/profile');
+var threads = require('./routes/threads');
 var moment = require('moment');
 //dotenv
 //var dotenv = require('dotenv').load();
@@ -59,6 +60,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/entries', entries);
 app.use('/profile', profile);
+app.use('/threads', threads);
 
 app.get('/logout', function(req, res){
   // destroy the user's session to log them out

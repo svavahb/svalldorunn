@@ -14,20 +14,19 @@ html(lang="is")
         ul.list-inline
           if (loggedin == false)
             li: a(href='/' class='link').btn FORSÍÐA
-            li: a(href='/login' class='link').btn INNSKRÁ
-            li: a(href='/register' class='link').btn NÝSKRÁ
             
         ul.list-inline
           if (loggedin == true)
             li: a(href='/profile/#{usern}' class='link').btn PRÓFÍLL
-            li: a(href='/entries' class='link').btn ÞRÆÐIR
+            li: a(href='/threads' class='link').btn ÞRÆÐIR
       
       .right
-          img(src='/images/brain.png')
-          
         ul.list-inline
           if (loggedin == true)
             li: a(href='/logout' class='link').btn ÚTSKRÁ
+          if (loggedin == false)
+            li: a(href='/login' class='link').btn INNSKRÁ
+            li: a(href='/register' class='link').btn NÝSKRÁ
           
       
     main      
