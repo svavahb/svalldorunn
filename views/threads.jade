@@ -2,8 +2,38 @@ extends layout
 
 block content
 
+script.
+  function show(){
+    console.log('hæ');
+    document.getElementById("createThread").classList.remove('hidden');
+    document.getElementById('bla').classList.add('hidden');
+  }
+
+button(type='submit'
+      value='submit'
+      class='btn btn-primary'
+      onclick='show()'
+      id='bla'
+      ) Búa til nýjann þráð!
+      
+    div.hidden#createThread
+    
+      textarea(id='textarea'
+              class='form-control'
+              name='textarea'
+              )
+      br
+    
+      button(type='submit'
+            value='submit'
+            class='btn btn-primary'
+            ) Skrá innlegg
+      br
+
   if threads
     ul(class="entries")
       each u in threads.rows   
         li
           a(href='/entries/#{u.id}')#postuser #{u.threadname}
+  else
+    p Engir þræðir!!!
