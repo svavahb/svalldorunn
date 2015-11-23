@@ -55,6 +55,15 @@ footer{
 .socials a:not(:first-of-type) {
   padding-left: 14px;
 }
+.socialslink {
+  opacity: 0.4;
+}
+.socialslink:hover {
+  opacity: 1;
+}
+.socials a img { transition: transform ease 0.3s; }
+.socials a img:hover { transform: translateY(-3px); }
+
 
 .link{
   color: white;

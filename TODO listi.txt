@@ -1,7 +1,7 @@
 o Búa til nýjann þráð
 X Form við nýskráningu
 o Heimasvæði
-o Setja profile-mynd (af netinu)
+x Setja profile-mynd (af netinu)
 o Flokkun þráða
 o "þínir þræðir"
 o comment á comment
