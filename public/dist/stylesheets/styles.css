@@ -49,10 +49,12 @@ footer {
   padding-left: 14px; }
 
 .link {
-  color: black; }
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em; }
 
 .link:hover {
-  border-bottom: 2px solid #f1f1f1; }
+  border-bottom: 2px solid #f1f1f1;
+  color: white; }
 
 ul {
   list-style-type: none; }

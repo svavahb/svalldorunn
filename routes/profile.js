@@ -37,7 +37,7 @@ function login(req, res){
     var imagelink = results.rows[0].image;
     console.log("hæ?");
 
-    if(imagelink===null){
+    if(imagelink===null || imagelink===''){
       imageset = false;
     }
     else {
