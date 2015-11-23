@@ -11,6 +11,8 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   position: fixed;
+  z-index: 100;
+  //overflow: hidden;
   padding-left: 10%;
   padding-top: 5%;
   margin: 0;
@@ -21,7 +23,7 @@ header {
     flex: 1;
   }
   .right {
-    padding-top: 8%;
+    padding-top: 0%;
     padding-left: 45%;
     flex: 1;
   }
@@ -35,7 +37,7 @@ h1{
 
 main {
   padding: 10%;
-  padding-top: 190px;
+  padding-top: 200px;
 }
 
 footer{
