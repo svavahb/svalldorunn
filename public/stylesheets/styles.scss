@@ -21,10 +21,16 @@ header {
     flex: 1;
   }
   .right {
-    padding-top: 6%;
+    padding-top: 8%;
     padding-left: 45%;
     flex: 1;
   }
+}
+
+h1{
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+
 }
 
 main {
@@ -42,9 +48,11 @@ footer{
   float: left;
   width: 100%;
 }
+
 .socials a{
   font-size: 0px;
 }
+
 .socials{
   padding-top: 20px;
   display: flex;
@@ -55,20 +63,22 @@ footer{
 .socials a:not(:first-of-type) {
   padding-left: 14px;
 }
+
 .socialslink {
   opacity: 0.4;
 }
+
 .socialslink:hover {
   opacity: 1;
 }
+
 .socials a img { transition: transform ease 0.3s; }
 .socials a img:hover { transform: translateY(-3px); }
 
 
 .link{
   color: white;
-  text-shadow: black 0.1em 0.1em 0.2em
-
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 .link:hover{

@@ -19,9 +19,13 @@ header {
   header .left {
     flex: 1; }
   header .right {
-    padding-top: 6%;
+    padding-top: 8%;
     padding-left: 45%;
     flex: 1; }
+
+h1 {
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em; }
 
 main {
   padding: 10%;

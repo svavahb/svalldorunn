@@ -4,11 +4,11 @@ block content
   h1 Halló 
     
   if(imageset==true)
-    img(src=imagelink height='200px')
+    img#profileimg(src=imagelink height='200px')
   else
-    img(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px')
+    img#profileimg(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px')
     
-  p Þú ert skráður inn sem #{renderData.user.name}!!
-  p Notendanafnið þitt er: #{renderData.user.username}
-  p Skráð e-mail: #{renderData.user.email}
+  p#profile Þú ert skráður inn sem #{renderData.user.name}!!
+  p#profile Notendanafnið þitt er: #{renderData.user.username}
+  p#profile Skráð e-mail: #{renderData.user.email}
     
