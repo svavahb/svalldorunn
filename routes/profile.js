@@ -7,7 +7,7 @@ var loggedin = true;
 var xss = require('xss');
 
 router.get('/:username', ensureLoggedIn ,login);
-router.post('/');
+router.post('/:username',changePic );
 
 function ensureLoggedIn(req, res, next){
   console.log("ensurefall");
@@ -17,6 +17,52 @@ function ensureLoggedIn(req, res, next){
   else{
     res.redirect('/login');
   }
+}
+
+function changePic(req, res){
+  var querygg = "UPDATE users SET image = $1 WHERE username  = $2"
+  var parameters = [req.body.newPicture, req.params.username];
+
+  dbUtils.queryDb(querygg, parameters, function(err){
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+  var renderData = {};
+  var username = "SELECT * FROM users WHERE username = $1";
+  parameters = [req.params.username];
+  var loggedin = false;
+
+    dbUtils.queryDb(username, parameters, function(err, results){
+      if(err) {
+        return console.error('error fetching client from pool', err);
+      }
+
+      var imageset;
+      renderData.user = results.rows[0];
+      var imagelink = results.rows[0].image;
+      console.log("hæ?");
+
+      if(imagelink===null || imagelink===''){
+        imageset = false;
+      }
+      else {
+        imageset = true;
+      }
+
+      if(req.session && req.session.user &&
+         req.session.user.username === req.params.username) {
+           console.info(req.session.user);
+           loggedin = true;
+           var usern = [req.params.username];
+        res.render('profile', {loggedin:loggedin,
+                               usern:usern,
+                               imagelink:imagelink,
+                               imageset:imageset,
+                               renderData:renderData
+        });
+      }
+    });
+  });
 }
 
 function login(req, res){

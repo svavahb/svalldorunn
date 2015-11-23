@@ -16,7 +16,36 @@ block content
       img#profileimg(src=imagelink height='200px')
     else
       img#profileimg(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px')
-    
+    br
+    script.
+      function show(){
+        document.getElementById("newPic").classList.remove('hidden');
+        document.getElementById('blabla').classList.add('hidden');
+      }
+    button(type='submit'
+          value='submit'
+          class='btn btn-primary'
+          onclick='show()'
+          id='blabla'
+          ) Skipta um mynd 
+    br
+    form.form-group(method='post' action='/profile/#{renderData.user.username}')
+  
+      div.hidden#newPic
+        label(for='newPicture')
+        input(id='newPicture'
+                class='form-control'
+                name='newPicture'
+                placeholder='Linkur'
+                )
+        br
+      
+        button(type='submit'
+              value='submit'
+              class='btn btn-primary'
+              ) vista mynd
+        br
+      
   br
   
     
