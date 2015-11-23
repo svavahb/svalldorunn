@@ -8,9 +8,7 @@ var xss = require('xss');
 var threadId;
 
 router.get('/:id', ensureLoggedIn, getRender);
-router.post('/:id', postEntries, postRender); // HALLO HJALP
-// http://localhost:8080/entries/:id
-
+router.post('/:id', postEntries, postRender);
 
 function ensureLoggedIn(req, res, next){
     if(req.session.user){
@@ -34,12 +32,20 @@ function getRender(req, res) {
     }
     var entries = result;
     var usern = req.session.user.username;
+    /*var imageset;
+
+    if(req.session.user.image===null || req.session.user.image=='') {
+      imageset=false;
+    }
+    else {
+      imageset=true;
+    }*/
 
     res.render('entries', {session : req.session,
                           loggedin:loggedin,
                           entries:entries,
                           usern:usern,
-                        threadId:threadId});
+                          threadId:threadId});
   });
 }
 

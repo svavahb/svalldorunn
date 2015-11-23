@@ -8,7 +8,6 @@ block content
     
     script.
       function show(){
-        console.log('hæ');
         document.getElementById("createThread").classList.remove('hidden');
         document.getElementById('bla').classList.add('hidden');
       }
@@ -41,18 +40,22 @@ block content
       
       
       if entries
-        ul(class="entries")
+        ul.media-list(class="entries")
           each u in entries.rows   
-            li
+            li.media
               //
                 if(imageset==true)
                   img(src=session.user.image)
                 else
                   img(src='http://oi64.tinypic.com/5o5nc0.jpg')
-              p#postuser #{u.username}
-              p#postdate= moment(u.date).calendar()
-              p#postentry #{u.entry}
-            
-            
-      
-            
+              div.media-left
+                if(imageset==true)
+                  img(src=session.user.image height='64px')
+                else
+                  img(src='http://oi64.tinypic.com/5o5nc0.jpg' height='64px')
+              div.media-body
+                h4.media-heading #{u.username}
+                p.dates= moment(u.date).calendar()
+                p #{u.entry}
+              
+        
