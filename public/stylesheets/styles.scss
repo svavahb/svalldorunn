@@ -7,7 +7,7 @@ body {
   font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 header {
-  background-image: url(/images/background.png);
+  background-image: url(/images/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   position: fixed;
@@ -42,7 +42,9 @@ main {
 
 footer{
   border-top:2px solid #f1f1f1;
+  margin-top:20px;
 }
+
 
 .site-footer {
   height: 80px;
@@ -95,7 +97,23 @@ ul {
 .entries{
   padding-top: 20px;
 }
-
+.profileHeader{
+  color: black;
+  font-size: 40px;
+  //text-shadow: black 0.1em 0.1em 0.2em;
+}
+#profile{
+  font-size:20px;
+}
+.profileImg{
+  margin-right:3%;
+}
+.profileText{
+  font-weight: bold;
+}
+.dates{
+  font-style: italic;
+}
 .xss-holder {
   background-color: white;
   color: black;
