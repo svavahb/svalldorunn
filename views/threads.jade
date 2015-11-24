@@ -2,14 +2,15 @@ extends layout
 
 block content
 
-  div.pull-left
+  h2 Spjallborð
+  p Smelltu á þráð til að skoða og taka þátt í umræðunni, eða búðu til þinn eigin þráð hér til hliðar!
+  div.pull-left.col-md-6
     if threads
       ul.list-group
         each u in threads.rows   
-          li.list-group-item
-            a(href='/entries/#{u.id}')#postuser #{u.threadname}
-              p.list-group-item-text= moment(u.date).calendar()
-            br
+          a.list-group-item(href='/entries/#{u.id}')#postuser #{u.threadname}
+            p.list-group-item-text= moment(u.date).calendar()
+          br
   
   script.
     function show(){
