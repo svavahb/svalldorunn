@@ -19,7 +19,7 @@ function ensureLoggedIn(req, res, next){
 }
 
 function getThreads(req, res) {
-    var threadlist = "select * FROM threads ORDER BY date ASC";
+    var threadlist = "select * FROM threads ORDER BY date DESC";
 
     dbUtils.queryDb(threadlist, null, function(err,result) {
       if(err) {
