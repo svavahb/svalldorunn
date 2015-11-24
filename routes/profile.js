@@ -7,7 +7,7 @@ var loggedin = true;
 var xss = require('xss');
 
 router.get('/:username', ensureLoggedIn ,login);
-router.post('/:username',changePic );
+router.post('/:username', changePic );
 
 function ensureLoggedIn(req, res, next){
   console.log("ensurefall");
@@ -27,12 +27,13 @@ function changePic(req, res){
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-  var renderData = {};
-  var username = "SELECT * FROM users WHERE username = $1";
-  parameters = [req.params.username];
-  var loggedin = false;
+    var renderData = {};
+    var papa = "SELECT * FROM users WHERE username = $1";
+    parameters = [req.params.username];
+    console.log('changepic:'+req.params.username);
+    var loggedin = false;
 
-    dbUtils.queryDb(username, parameters, function(err, results){
+    dbUtils.queryDb(papa, parameters, function(err, results){
       if(err) {
         return console.error('error fetching client from pool', err);
       }
@@ -66,14 +67,14 @@ function changePic(req, res){
 }
 
 function login(req, res){
-  console.log("loginfall");
   var renderData = {};
-  var username = "SELECT * FROM users WHERE username = $1";
+  console.log(req.params.username);
+  var querystr = "SELECT * FROM users WHERE username = $1";
   var parameters = [req.params.username];
   var loggedin = false;
 
 
-  dbUtils.queryDb(username, parameters, function(err, results){
+  dbUtils.queryDb(querystr, parameters, function(err, results){
     if(err) {
       return console.error('error fetching client from pool', err);
     }

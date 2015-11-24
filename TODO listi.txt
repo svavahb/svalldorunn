@@ -1,4 +1,4 @@
-o Búa til nýjann þráð
+x Búa til nýjan þráð
 X Form við nýskráningu
 o Heimasvæði
 x Setja profile-mynd (af netinu)

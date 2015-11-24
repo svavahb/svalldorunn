@@ -32,7 +32,6 @@ header {
 h1{
   color: white;
   text-shadow: black 0.1em 0.1em 0.2em;
-
 }
 
 main {
@@ -97,23 +96,29 @@ ul {
 .entries{
   padding-top: 20px;
 }
+
 .profileHeader{
   color: black;
   font-size: 40px;
   //text-shadow: black 0.1em 0.1em 0.2em;
 }
+
 #profile{
   font-size:20px;
 }
+
 .profileImg{
   margin-right:3%;
 }
+
 .profileText{
   font-weight: bold;
 }
+
 .dates{
   font-style: italic;
 }
+
 .xss-holder {
   background-color: white;
   color: black;
@@ -134,4 +139,12 @@ ul {
 #postentry{
   font-size: 20px;
   padding-top: 10px;
+}
+
+#createButton, #createThread{
+  position: fixed;
+}
+
+#bla{
+  position: fixed;
 }

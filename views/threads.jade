@@ -2,9 +2,47 @@ extends layout
 
 block content
 
-  if threads
-    ul(class="entries")
-      each u in threads.rows   
-        li
-          a(href='/entries/#{u.id}')#postuser #{u.threadname}
-          br
+  div.pull-left
+    if threads
+      ul(class="entries")
+        each u in threads.rows   
+          li
+            a(href='/entries/#{u.id}')#postuser #{u.threadname}
+              p= moment(u.date).calendar()
+            br
+  
+  script.
+    function show(){
+      document.getElementById("createThread").classList.remove('hidden');
+      document.getElementById('createButton').classList.add('hidden');
+    }
+
+  div.pull-right
+    button(type='submit'
+          value='submit'
+          class='btn btn-primary'
+          onclick='show()'
+          id='createButton'
+          ) Búa til nýjan þráð
+    br
+    form.form-group(method='post' action='/threads')
+      div.hidden#createThread
+        label(for='titill') Titill:
+        input(
+          id='titill'
+          class='form-control'
+          name='threadTitle'
+          placeholder='Titill'
+          )
+        label(for='textarea') Texti:
+        textarea(id='textarea'
+                class='form-control'
+                name='textarea'
+                )
+        br
+        button(type='submit'
+              value='submit'
+              class='btn btn-primary'
+              ) Vista þráð
+        br
+      

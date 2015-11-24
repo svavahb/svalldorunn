@@ -20,7 +20,7 @@ function ensureLoggedIn(req, res, next){
 }
 
 function getRender(req, res) {
-  var login = "select * FROM entries WHERE threadid=$1 ORDER BY date DESC LIMIT 20";
+  var login = "select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC";
   console.log(req.session);
   threadId = req.params.id;
   var parameters = [req.params.id];
@@ -32,14 +32,6 @@ function getRender(req, res) {
     }
     var entries = result;
     var usern = req.session.user.username;
-    /*var imageset;
-
-    if(req.session.user.image===null || req.session.user.image=='') {
-      imageset=false;
-    }
-    else {
-      imageset=true;
-    }*/
 
     res.render('entries', {session : req.session,
                           loggedin:loggedin,
@@ -50,7 +42,7 @@ function getRender(req, res) {
 }
 
 function postRender(req, res) {
-  var login = "select * FROM entries WHERE threadid=$1 ORDER BY date DESC LIMIT 20";
+  var login = "select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC";
   console.log(req.session);
   var parameters = [req.params.id];
 
