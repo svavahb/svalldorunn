@@ -7,8 +7,10 @@ o "þínir þræðir"
 o comment á comment
 o breyta upplýsingum
 o usermynd á þræði
+o laga onclick, í entries, profile og threads
 
-
+mælir með því að nota jquery í þetta, því að ef við erum með sama klasan á allt þá væri hægt að gera þetta við öll í einu..
+þá væri t.d. hægt að vera með einhver attribute (til þess að skilja milli hvað þau eiga að gera?)
 -- Table: public.entries
 
 -- DROP TABLE public.entries;
@@ -75,4 +77,3 @@ WITH (
 );
 ALTER TABLE public.users
   OWNER TO postgres;
-
