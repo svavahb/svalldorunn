@@ -80,9 +80,12 @@ block content
         
   div.col-md-6.col-s-6.col-xs-12.pull-left
     if threads
-      ul.list-group#threads
+      div.list-group#threads
         each u in threads.rows 
-          a.list-group-item(href='/entries/#{u.id}')#postuser #{u.threadname}
+          a.list-group-item(href='/entries/#{u.id}')
+            p.list-group-item-text #{u.threadname}
+            p.list-group-item-text #{u.category}
+            p.list-group-item-text #{u.username}
             p.list-group-item-text= moment(u.date).calendar()
           br
 
