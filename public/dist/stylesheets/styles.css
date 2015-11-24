@@ -1,7 +1,8 @@
 html {
   box-sizing: border-box;
   font-size: 10px;
-  position: relative; }
+  position: relative;
+  word-break: break-all; }
 
 body {
   font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -76,6 +77,14 @@ footer {
   color: white;
   text-shadow: black 0.1em 0.1em 0.2em; }
 
+.pThreadname {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline; }
+
+.pCategory {
+  font-size: 12px; }
+
 .link:hover {
   border-bottom: 2px solid #f1f1f1;
   color: white; }
@@ -123,8 +132,9 @@ img {
   font-size: 20px;
   padding-top: 10px; }
 
-#bla {
-  position: fixed; }
-
 #titill, #category {
   margin-bottom: 10px; }
+
+.media-body, .media-left {
+  display: block;
+  width: 50%; }

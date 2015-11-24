@@ -61,17 +61,17 @@ block content
         br
         label(for='catergory') Veldu flokk:
         select(id='category' class='form-control' name='category')
-          option(value='comedy') Gamanmyndir
-          option(value='romance') Rómantískar myndir
-          option(value='drama') Dramatískar myndir
-          option(value='action') Spennumyndir
-          option(value='horror') Hryllingsmyndir
-          option(value='fantasy') Ævintýramyndir
-          option(value='scifi') Sci-fi myndir
-          option(value='iceland') Íslenskar myndir
-          option(value='documentary') Heimildamyndir
-          option(value='stars') Leikarar
-          option(value='other') Annað
+          option(value='Gamanmyndir') Gamanmyndir
+          option(value='Rómantískarmyndir') Rómantískar myndir
+          option(value='Dramamyndir') Dramatískar myndir
+          option(value='Spennumyndir') Spennumyndir
+          option(value='Hryllingsmyndir') Hryllingsmyndir
+          option(value='Ævintýramyndir') Ævintýramyndir
+          option(value='Sci-fi myndir') Sci-fi myndir
+          option(value='Íslenskarmyndir') Íslenskar myndir
+          option(value='Heimildarmyndir') Heimildamyndir
+          option(value='Leikarar') Leikarar
+          option(value='Annað') Annað
         button(type='submit'
               value='submit'
               class='btn btn-primary'
@@ -83,10 +83,11 @@ block content
       div.list-group#threads
         each u in threads.rows 
           a.list-group-item(href='/entries/#{u.id}')
-            p.list-group-item-text #{u.threadname}
-            p.list-group-item-text #{u.category}
-            p.list-group-item-text #{u.username}
+            p.list-group-item-text.pThreadname #{u.threadname}
             p.list-group-item-text= moment(u.date).calendar()
+            p.list-group-item-text notandi: #{u.username}
+            p.list-group-item-text.pCategory flokkur: #{u.category}
+            
           br
 
   script(src='public/javascripts/frontend.js')
