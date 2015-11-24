@@ -30,13 +30,6 @@ block content
   
   h2 Spjallborð
   p Smelltu á þráð til að skoða og taka þátt í umræðunni, eða búðu til þinn eigin þráð hér til hliðar!
-  div.pull-left.col-md-6
-    if threads
-      ul.list-group#threads
-        each u in threads.rows 
-          a.list-group-item(href='/entries/#{u.id}')#postuser #{u.threadname}
-            p.list-group-item-text= moment(u.date).calendar()
-          br
   //
     script.
       function show(){
@@ -44,7 +37,7 @@ block content
         document.getElementById('createButton').classList.add('hidden');
       }
 
-  div.pull-right.col-md-3
+  div.col-md-6.col-s-6.col-xs-12.pull-right
     button(type='submit'
           value='submit'
           class='btn btn-primary'
@@ -66,8 +59,8 @@ block content
                 name='textarea'
                 )
         br
-        label(for='addresstype') Veldu flokk:
-        select(id='addresstype' class='form-control' name='category')
+        label(for='catergory') Veldu flokk:
+        select(id='category' class='form-control' name='category')
           option(value='comedy') Gamanmyndir
           option(value='romance') Rómantískar myndir
           option(value='drama') Dramatískar myndir
@@ -84,6 +77,14 @@ block content
               class='btn btn-primary'
               ) Vista þráð
         br
+        
+  div.col-md-6.col-s-6.col-xs-12.pull-left
+    if threads
+      ul.list-group#threads
+        each u in threads.rows 
+          a.list-group-item(href='/entries/#{u.id}')#postuser #{u.threadname}
+            p.list-group-item-text= moment(u.date).calendar()
+          br
 
   script(src='public/javascripts/frontend.js')
       

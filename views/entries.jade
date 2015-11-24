@@ -12,7 +12,7 @@ block content
         document.getElementById('bla').classList.add('hidden');
       }
 
-    div.col-md-6.pull-right
+    div.col-md-6.col-s-6.col-xs-12.pull-right
       button(type='submit'
             value='submit'
             class='btn btn-primary'
@@ -21,22 +21,21 @@ block content
             ) Taka þátt í umræðunni!  
       br
       form.form-group.hidden#createThread(method='post' action='/entries/#{threadId}')
-        div.col-md-12
-          textarea(id='textarea'
-                  class='form-control '
-                  name='textarea'
-                  rows = '7'
-                  columns = '30'
-                  )
-          br
+        textarea(id='textarea'
+                class='form-control '
+                name='textarea'
+                rows = '7'
+                columns = '30'
+                )
+        br
+    
+        button(type='submit'
+              value='submit'
+              class='btn btn-primary'
+              ) Vista innlegg
+        br
       
-          button(type='submit'
-                value='submit'
-                class='btn btn-primary'
-                ) Vista innlegg
-          br
-      
-    div.col-md-6.pull-left
+    div.col-md-6.col-s-6.col-xs-12.pull-left
       if entries
         ul.media-list(class="entries")
           each u in entries.rows   

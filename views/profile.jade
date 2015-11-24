@@ -1,33 +1,36 @@
 extends layout
 
 block content
-  p.profileHeader Þetta er svæðið þitt  #{renderData.user.name}
-  
-  div.pull-left
-    p#profile Þú ert skráður inn sem: 
-      span.profileText #{renderData.user.name}
-    p#profile Notendanafnið þitt er: 
-      span.profileText #{renderData.user.username}
-    p#profile Skráð e-mail: 
-      span.profileText #{renderData.user.email}
-  
-  div.profileImg.pull-right    
-    if(imageset==true)
-      img#profileimg(src=imagelink height='200px')
-    else
-      img#profileimg(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px')
-    br
-    script.
-      function show(){
-        document.getElementById("newPic").classList.remove('hidden');
-        document.getElementById('blabla').classList.add('hidden');
-      }
-    button(type='submit'
-          value='submit'
-          class='btn btn-primary'
-          onclick='show()'
-          id='blabla'
-          ) Skipta um mynd 
+  div.col-md-6.col-s-6.col-xs-12
+    p.profileHeader Þetta er svæðið þitt  #{renderData.user.name}
+    
+    div
+      p#profile Þú ert skráður inn sem: 
+        span.profileText #{renderData.user.name}
+      p#profile Notendanafnið þitt er: 
+        span.profileText #{renderData.user.username}
+      p#profile Skráð e-mail: 
+        span.profileText #{renderData.user.email}
+        
+  div.col-md-6.col-s-6.col-xs-12  
+    div.profileImg   
+      if(imageset==true)
+        img#profileimg(src=imagelink height='200px')
+      else
+        img#profileimg(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px')
+    
+      script.
+        function show(){
+          document.getElementById("newPic").classList.remove('hidden');
+          document.getElementById('blabla').classList.add('hidden');
+        }
+      br
+      button(type='submit'
+            value='submit'
+            class='btn btn-primary'
+            onclick='show()'
+            id='blabla'
+            ) Skipta um mynd 
     br
     form.form-group(method='post' action='/profile/#{renderData.user.username}')
   

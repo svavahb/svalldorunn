@@ -123,6 +123,10 @@ ul {
 .profileImg{
   margin-right:3%;
 }
+img{
+  margin-bottom: 10px;
+}
+
 
 .profileText{
   font-weight: bold;
@@ -155,10 +159,13 @@ ul {
 }
 
 #createButton, #createThread{
-  
-}
 
+}
 
 #bla{
   position: fixed;
+}
+
+#titill, #category{
+  margin-bottom: 10px;
 }
