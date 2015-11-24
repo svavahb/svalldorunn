@@ -4,11 +4,11 @@ block content
 
   div.pull-left
     if threads
-      ul(class="entries")
+      ul.list-group
         each u in threads.rows   
-          li
+          li.list-group-item
             a(href='/entries/#{u.id}')#postuser #{u.threadname}
-              p= moment(u.date).calendar()
+              p.list-group-item-text= moment(u.date).calendar()
             br
   
   script.

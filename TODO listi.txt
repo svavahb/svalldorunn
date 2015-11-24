@@ -1,4 +1,4 @@
-x Búa til nýjan þráð
+﻿x Búa til nýjan þráð
 X Form við nýskráningu
 o Heimasvæði
 x Setja profile-mynd (af netinu)
@@ -9,24 +9,56 @@ o breyta upplýsingum
 o usermynd á þræði
 
 
+-- Table: public.entries
 
+-- DROP TABLE public.entries;
 
 CREATE TABLE public.entries
 (
   username text,
-  id integer NOT NULL DEFAULT nextval('entries_id_seq'::regclass),
   entry text,
   date timestamp with time zone,
-  CONSTRAINT entries_pkey PRIMARY KEY (id)
+  id integer NOT NULL DEFAULT nextval('entries_id_seq'::regclass),
+  threadid integer,
+  CONSTRAINT id PRIMARY KEY (id),
+  CONSTRAINT threadidfk FOREIGN KEY (threadid)
+      REFERENCES public.threads (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 )
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.entries
+  OWNER TO postgres;
+
+
+-- Table: public.threads
+
+-- DROP TABLE public.threads;
 
 CREATE TABLE public.threads
 (
   threadname text NOT NULL,
-  CONSTRAINT threads_pkey PRIMARY KEY (threadname)
+  id integer NOT NULL DEFAULT nextval('threads_id_seq'::regclass),
+  username text,
+  date timestamp with time zone,
+  CONSTRAINT idpk PRIMARY KEY (id),
+  CONSTRAINT usernamekey FOREIGN KEY (username)
+      REFERENCES public.users (username) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 )
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.threads
+  OWNER TO postgres;
 
-REATE TABLE public.users
+
+-- Table: public.users
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users
 (
   username text NOT NULL,
   id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
@@ -38,3 +70,9 @@ REATE TABLE public.users
   CONSTRAINT users_email_key UNIQUE (email),
   CONSTRAINT users_username_key UNIQUE (username)
 )
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.users
+  OWNER TO postgres;
+
