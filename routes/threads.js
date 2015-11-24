@@ -38,8 +38,8 @@ function getThreads(req, res) {
 }
 
 function newThread(req, res, next) {
-  var entry = "INSERT INTO threads (threadname, username, date) VALUES ($1, $2, $3)";
-  var info = [req.body.threadTitle, req.session.user.username, new Date()];
+  var entry = "INSERT INTO threads (threadname, username, date, category) VALUES ($1, $2, $3, $4)";
+  var info = [req.body.threadTitle, req.session.user.username, new Date(), req.body.category];
   var clean = xss(req.body.textarea);
 
   dbUtils.queryDb(entry, info, function(err) {

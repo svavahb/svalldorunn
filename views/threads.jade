@@ -1,28 +1,53 @@
 extends layout
 
 block content
-
+  
+  ul.nav.nav-tabs#categories
+    li(role='presentation').active
+      a(href="#") Allir þræðir
+    li(role='presentation')
+      a(href="#") Gamanmyndir
+    li(role='presentation')
+      a(href="#") Rómantískar myndir
+    li(role='presentation')
+      a(href="#") Dramatískar myndir
+    li(role='presentation')
+      a(href="#") Spennumyndir
+    li(role='presentation')
+      a(href="#") Hryllingsmyndir
+    li(role='presentation')
+      a(href="#") Ævintýramyndir
+    li(role='presentation')
+      a(href="#") Sci-fi myndir
+    li(role='presentation')
+      a(href="#") Íslenskar myndir
+    li(role='presentation')
+      a(href="#") Heimildamyndir
+    li(role='presentation')
+      a(href="#") Leikarar
+    li(role='presentation')
+      a(href="#") Annað   
+  
   h2 Spjallborð
   p Smelltu á þráð til að skoða og taka þátt í umræðunni, eða búðu til þinn eigin þráð hér til hliðar!
   div.pull-left.col-md-6
     if threads
-      ul.list-group
-        each u in threads.rows   
+      ul.list-group#threads
+        each u in threads.rows 
           a.list-group-item(href='/entries/#{u.id}')#postuser #{u.threadname}
             p.list-group-item-text= moment(u.date).calendar()
           br
-  
-  script.
-    function show(){
-      document.getElementById("createThread").classList.remove('hidden');
-      document.getElementById('createButton').classList.add('hidden');
-    }
+  //
+    script.
+      function show(){
+        document.getElementById("createThread").classList.remove('hidden');
+        document.getElementById('createButton').classList.add('hidden');
+      }
 
   div.pull-right
     button(type='submit'
           value='submit'
           class='btn btn-primary'
-          onclick='show()'
           id='createButton'
           ) Búa til nýjan þráð
     br
@@ -41,9 +66,24 @@ block content
                 name='textarea'
                 )
         br
+        label(for='addresstype') Veldu flokk:
+        select(id='addresstype' class='form-control' name='category')
+          option(value='comedy') Gamanmyndir
+          option(value='romance') Rómantískar myndir
+          option(value='drama') Dramatískar myndir
+          option(value='action') Spennumyndir
+          option(value='horror') Hryllingsmyndir
+          option(value='fantasy') Ævintýramyndir
+          option(value='scifi') Sci-fi myndir
+          option(value='iceland') Íslenskar myndir
+          option(value='documentary') Heimildamyndir
+          option(value='stars') Leikarar
+          option(value='other') Annað
         button(type='submit'
               value='submit'
               class='btn btn-primary'
               ) Vista þráð
         br
+
+  script(src='public/javascripts/frontend.js')
       
