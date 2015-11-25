@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var dbUtils = require('../utils/db-utils');
 var loggedin = true;
+var threadnameerror = false;
 var xss = require('xss');
 
 router.get('/', ensureLoggedIn, getThreads);
@@ -33,7 +34,8 @@ function getThreads(req, res) {
     res.render('threads', {session : req.session,
                           loggedin:loggedin,
                           threads:threads,
-                          usern:usern});
+                          usern:usern,
+                          threadnameerror:threadnameerror});
     });
 }
 
@@ -44,7 +46,13 @@ function newThread(req, res, next) {
 
   dbUtils.queryDb(entry, info, function(err) {
     if(err){
-      return console.error('error fetching entries from pool', err);
+      if((/.*(threads_threadname_key).*/).test(err)) {
+        threadnameerror = true;
+        next();
+      }
+      else {
+        return console.error('error fetching entries from pool', err);
+      }
     }
     var querystr = "SELECT * FROM threads WHERE threadname=$1";
     var parameter = [req.body.threadTitle];

@@ -19,22 +19,16 @@ block content
       else
         img#profileimg(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px' alt='profile picture for #{renderData.user.username}')
     
-      script.
-        function show(){
-          document.getElementById("newPic").classList.remove('hidden');
-          document.getElementById('blabla').classList.add('hidden');
-        }
       br
       button(type='submit'
             value='submit'
             class='btn btn-primary'
-            onclick='show()'
-            id='blabla'
+            id='picButton'
             ) Skipta um mynd 
     br
-    form.form-group(method='post' action='/profile/#{renderData.user.username}')
+    form.form-group.hidden#newPic(method='post' action='/profile/#{renderData.user.username}')
   
-      div.hidden#newPic
+      div
         label(for='newPicture')
         input(id='newPicture'
                 class='form-control'
@@ -50,5 +44,7 @@ block content
         br
       
   br
+  
+script(src='public/javascripts/frontendprofile.js')
   
     

@@ -41,11 +41,11 @@ block content
     button(type='submit'
           value='submit'
           class='btn btn-primary'
-          id='createButton'
+          id='threadButton'
           ) Búa til nýjan þráð
       
     form.form-group(method='post' action='/threads')
-      div.hidden#createThread
+      div.hidden#newThread
         label(for='titill') Titill:
         input(
           id='titill'
@@ -76,6 +76,9 @@ block content
               value='submit'
               class='btn btn-primary'
               ) Vista þráð
+        if threadnameerror 
+          p(class='alert alert-danger') Það er nú þegar til þráður með þessu nafni. Veldu annað!
+        
           
         
   section.col-md-6.col-s-6.col-xs-12.pull-left
@@ -90,5 +93,5 @@ block content
             
             
 
-  script(src='public/javascripts/frontend.js')
+  script(src='public/javascripts/frontendthreads.js')
       
