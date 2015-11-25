@@ -5,6 +5,7 @@ block content
   if(loggedin==true)
   
     p Þú ert skráður inn sem #{usern}!!
+    h1 #{renderThreads.threadname}
     
     script.
       function show(){
@@ -42,7 +43,6 @@ block content
           each u in entries.rows   
             li.media
               div.media-left
-                
                 img(src='#{u.image}' height='64px' alt='profile picture for #{u.username}')
               div.media-body
                 h4.media-heading #{u.username}
