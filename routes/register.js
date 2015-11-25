@@ -66,6 +66,10 @@ router.post('/', function(req, res) {
     var passworderror = true;
     registered = false;
   }
+  if (req.body.image==""){
+    req.body.image = 'http://oi64.tinypic.com/5o5nc0.jpg';
+  }
+
 
       var hash = bcrypt.hashSync(req.body.password);
       var queryStr = "INSERT INTO users (username, hash, email, name, image) VALUES ($1, $2, $3, $4, $5)";

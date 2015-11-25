@@ -20,7 +20,10 @@ function ensureLoggedIn(req, res, next){
 }
 
 function changePic(req, res){
-  var querygg = "UPDATE users SET image = $1 WHERE username  = $2"
+  if (req.body.newPicture == ''){
+    req.body.newPicture = 'http://oi64.tinypic.com/5o5nc0.jpg';
+  }
+  var querygg = "UPDATE users SET image = $1 WHERE username  = $2";
   var parameters = [req.body.newPicture, req.params.username];
 
   dbUtils.queryDb(querygg, parameters, function(err){
@@ -45,6 +48,7 @@ function changePic(req, res){
 
       if(imagelink===null || imagelink===''){
         imageset = false;
+      
       }
       else {
         imageset = true;
