@@ -5,16 +5,7 @@ block content
   if(loggedin==true)
   
     p Þú ert skráður inn sem #{usern}!!
-<<<<<<< HEAD
-=======
     h1 #{renderThreads.threadname}
-    
-    script.
-      function show(){
-        document.getElementById("createThread").classList.remove('hidden');
-        document.getElementById('bla').classList.add('hidden');
-      }
->>>>>>> c0b4bcb1abbd7e67f539acda3bca812cc3453990
 
     section.col-md-6.col-s-6.col-xs-12.pull-right
       button(type='submit'
@@ -45,16 +36,11 @@ block content
           each u in entries.rows   
             li.media
               div.media-left
-<<<<<<< HEAD
-                
-                img(src='#{u.image}' width='64px' alt='profile picture for #{u.username}')
-=======
                 img(src='#{u.image}' height='64px' alt='profile picture for #{u.username}')
->>>>>>> c0b4bcb1abbd7e67f539acda3bca812cc3453990
               div.media-body
                 h4.media-heading #{u.username}
                 p.dates= moment(u.date).calendar()
                 p #{u.entry}
   
-  script(src='public/javascripts/frontendentries.js')        
+            
       
