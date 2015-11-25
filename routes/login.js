@@ -60,7 +60,7 @@ router.post('/', function(req, res) {
         // in the session store to be retrieved,
         // or in this case the entire user object
         req.session.user = user;
-        res.redirect('/profile/'+req.body.username);
+        res.redirect('/profile/'+req.session.user.username);
       });
     }
   });

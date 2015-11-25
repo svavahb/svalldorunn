@@ -25,6 +25,7 @@ function changePic(req, res){
   }
   var querygg = "UPDATE users SET image = $1 WHERE username  = $2";
   var parameters = [req.body.newPicture, req.params.username];
+  console.log("changepic params: "+req.params.username);
 
   dbUtils.queryDb(querygg, parameters, function(err){
     if(err) {
@@ -42,12 +43,13 @@ function changePic(req, res){
 
       var imageset;
       renderData.user = results.rows[0];
-      var imagelink = results.rows[0].image;
-      console.log("hæ?");
+      console.log("renderdatausertype: "+typeof renderData.user);
+      if(results.rows[0]) {
+        var imagelink = results.rows[0].image;
+      }
 
       if(imagelink===null || imagelink===''){
         imageset = false;
-
       }
       else {
         imageset = true;
@@ -89,7 +91,9 @@ function login(req, res){
       renderData.user = results.rows[0];
       renderData.threads = results2.rows;
       console.log("renderdata: "+renderData.threads.threadname);
-      var imagelink = results.rows[0].image;
+      if(results.rows[0]) {
+        var imagelink = results.rows[0].image;
+      }
 
       if(imagelink===null || imagelink===''){
         imageset = false;

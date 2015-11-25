@@ -23,6 +23,7 @@ function getRender(req, res) {
   var login = "select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC";
   var threadName = "SELECT * FROM threads WHERE id=$1";
   var par = [req.params.id];
+  console.log("id: "+req.params.id);
 
   dbUtils.queryDb(threadName, par, function(err, results) {
     if(err) {
@@ -33,7 +34,7 @@ function getRender(req, res) {
 
     console.log(req.session);
     threadId = req.params.id;
-    console.log(threadId);
+    console.log("get: "+threadId);
 
     dbUtils.queryDb(login, par, function(err,result) {
       if(err) {
@@ -67,7 +68,7 @@ function postRender(req, res) {
 
     console.log(req.session);
     threadId = req.params.id;
-    console.log(threadId);
+    console.log("post: "+threadId);
 
     dbUtils.queryDb(login, parameters, function(err,result) {
       if(err) {

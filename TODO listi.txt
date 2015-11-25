@@ -3,8 +3,8 @@ X Form við nýskráningu
 o Heimasvæði
 x Setja profile-mynd (af netinu)
 x Flokkun þráða
-o "þínir þræðir"
-o comment á comment
+x "þínir þræðir"
+- comment á comment
 o breyta upplýsingum
 x usermynd á þræði
 x laga onclick, í entries, profile og threads
