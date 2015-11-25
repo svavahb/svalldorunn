@@ -11,9 +11,6 @@ var xss = require('xss');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  var hash = bcrypt.hashSync("bacon");
-  console.log(bcrypt.compareSync("bacon", hash)); // true
-  console.log(bcrypt.compareSync("veggies", hash)); // false
   res.render('login', {loggedin:loggedin});
 });
 
@@ -63,7 +60,7 @@ router.post('/', function(req, res) {
         // in the session store to be retrieved,
         // or in this case the entire user object
         req.session.user = user;
-        res.redirect('/profile/'+user.username);
+        res.redirect('/profile/'+req.body.username);
       });
     }
   });

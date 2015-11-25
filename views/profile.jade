@@ -3,14 +3,23 @@ extends layout
 block content
 
   section.col-md-6.col-s-6.col-xs-12
-    p.profileHeader Þetta er svæðið þitt,  #{renderData.user.name}
-    
-    p#profile Þú ert skráður inn sem: 
-      span.profileText #{renderData.user.name}
-    p#profile Notendanafnið þitt er: 
-      span.profileText #{renderData.user.username}
+    if(renderData.user.username!=usern)
+      p.profileHeader Þetta svæði á #{renderData.user.name}
+      p#profile Notendanafnið er:
+        span.profileText #{renderData.user.username}
+    else
+      p.profileHeader Þetta er svæðið þitt,  #{renderData.user.name}
+      p#profile Þú ert skráður inn sem: 
+        span.profileText #{usern}
+      p#profile Notendanafnið þitt er: 
+        span.profileText #{renderData.user.username}
     p#profile Skráð e-mail: 
       span.profileText #{renderData.user.email}
+    p#profile Um mig:
+    p #{renderData.user.about}
+    if(renderData.user.username!=usern)
+      
+    
         
   section.col-md-6.col-s-6.col-xs-12  
     div.profileImg   
@@ -18,13 +27,13 @@ block content
         img#profileimg(src=imagelink height='200px' alt='profile picture for #{renderData.user.username}')
       else
         img#profileimg(src='http://oi64.tinypic.com/5o5nc0.jpg' height='200px' alt='profile picture for #{renderData.user.username}')
-    
-      br
-      button(type='submit'
-            value='submit'
-            class='btn btn-primary'
-            id='picButton'
-            ) Skipta um mynd 
+      if(renderData.user.username==usern)
+        br
+        button(type='submit'
+              value='submit'
+              class='btn btn-primary'
+              id='picButton'
+              ) Skipta um mynd 
     br
     form.form-group.hidden#newPic(method='post' action='/profile/#{renderData.user.username}')
   
@@ -42,7 +51,22 @@ block content
               class='btn btn-primary'
               ) vista mynd
         br
-      
+    if(renderData.user.username!=usern)
+      h4 Þræðir sem #{renderData.user.name} hefur búið til:
+      if renderData.threads
+        div.list-group#threads
+          each u in renderData.threads 
+            a.list-group-item(href='/entries/#{u.id}')
+              p.list-group-item-text #{u.threadname}
+              p.list-group-item-text= moment(u.date).calendar()
+    else
+      h4 Þínir þræðir:
+      if renderData.threads
+        div.list-group#threads
+          each u in renderData.threads 
+            a.list-group-item(href='/entries/#{u.id}')
+              p.list-group-item-text #{u.threadname}
+              p.list-group-item-text= moment(u.date).calendar()
   br
   
 script(src='public/javascripts/frontendprofile.js')

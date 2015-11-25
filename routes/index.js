@@ -8,7 +8,12 @@ var loggedin = false;
 /* GET home page. */
 router.get('/', function(req, res) {
   console.log(req.session);
-  res.render('index', {session : req.session, loggedin:loggedin });
+  if(req.session && req.session.user) {
+       console.info(req.session.user);
+       loggedin = true;
+       var usern = req.session.user.username;
+  }
+  res.render('index', {session : req.session, usern:usern, loggedin:loggedin });
 });
 
 

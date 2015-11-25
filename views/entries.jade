@@ -5,7 +5,7 @@ block content
   if(loggedin==true)
   
     p Þú ert skráður inn sem #{usern}!!
-    h1 #{renderThreads.threadname}
+    h2 #{renderThreads.threadname}
 
     section.col-md-6.col-s-6.col-xs-12.pull-right
       button(type='submit'
@@ -35,10 +35,12 @@ block content
         ul.media-list(class="entries")
           each u in entries.rows   
             li.media
-              div.media-left
-                img(src='#{u.image}' height='64px' alt='profile picture for #{u.username}')
+              div.pull-left
+                a(href="/profile/#{u.username}")
+                  img.media-object(src='#{u.image}' height='64px' alt='profile picture for #{u.username}')
               div.media-body
-                h4.media-heading #{u.username}
+                a(href="/profile/#{u.username}")
+                  h4.media-heading #{u.username}
                 p.dates= moment(u.date).calendar()
                 p #{u.entry}
   

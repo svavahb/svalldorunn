@@ -6,8 +6,8 @@ var dbUtils = require('../utils/db-utils');
 var loggedin = true;
 var xss = require('xss');
 
-router.get('/:username', ensureLoggedIn ,login);
-router.post('/:username', changePic );
+router.get('/:username', ensureLoggedIn, login);
+router.post('/:username', ensureLoggedIn, changePic );
 
 function ensureLoggedIn(req, res, next){
   console.log("ensurefall");
@@ -31,12 +31,11 @@ function changePic(req, res){
       return console.error('error fetching client from pool', err);
     }
     var renderData = {};
-    var papa = "SELECT * FROM users WHERE username = $1";
+    var str = "SELECT * FROM users WHERE username = $1";
     parameters = [req.params.username];
-    console.log('changepic:'+req.params.username);
     var loggedin = false;
 
-    dbUtils.queryDb(papa, parameters, function(err, results){
+    dbUtils.queryDb(str, parameters, function(err, results){
       if(err) {
         return console.error('error fetching client from pool', err);
       }
@@ -48,65 +47,68 @@ function changePic(req, res){
 
       if(imagelink===null || imagelink===''){
         imageset = false;
-      
+
       }
       else {
         imageset = true;
       }
-
-      if(req.session && req.session.user &&
-         req.session.user.username === req.params.username) {
+      if(req.session && req.session.user) {
            console.info(req.session.user);
            loggedin = true;
-           var usern = [req.params.username];
-        res.render('profile', {loggedin:loggedin,
-                               usern:usern,
-                               imagelink:imagelink,
-                               imageset:imageset,
-                               renderData:renderData
-        });
+           var usern = req.session.user.username;
       }
-    });
-  });
-}
-
-function login(req, res){
-  var renderData = {};
-  console.log(req.params.username);
-  var querystr = "SELECT * FROM users WHERE username = $1";
-  var parameters = [req.params.username];
-  var loggedin = false;
-
-
-  dbUtils.queryDb(querystr, parameters, function(err, results){
-    if(err) {
-      return console.error('error fetching client from pool', err);
-    }
-
-    var imageset;
-    renderData.user = results.rows[0];
-    var imagelink = results.rows[0].image;
-    console.log("hæ?");
-
-    if(imagelink===null || imagelink===''){
-      imageset = false;
-    }
-    else {
-      imageset = true;
-    }
-
-    if(req.session && req.session.user &&
-       req.session.user.username === req.params.username) {
-         console.info(req.session.user);
-         loggedin = true;
-         var usern = [req.params.username];
       res.render('profile', {loggedin:loggedin,
                              usern:usern,
                              imagelink:imagelink,
                              imageset:imageset,
                              renderData:renderData
       });
+    });
+  });
+}
+
+function login(req, res){
+  var renderData = {};
+  console.log("params usern: "+req.params.username);
+  var querystr = "SELECT * FROM users WHERE username = $1";
+  var parameters = [req.params.username];
+  var loggedin = false;
+
+  dbUtils.queryDb(querystr, parameters, function(err, results){
+    if(err) {
+      return console.error('error fetching client from pool', err);
     }
+
+    var querystr2 = "SELECT * FROM threads WHERE username=$1";
+
+    dbUtils.queryDb(querystr2, parameters, function(err, results2){
+      if(err) {
+        return console.error('error fetching client from pool', err);
+      }
+      var imageset;
+      renderData.user = results.rows[0];
+      renderData.threads = results2.rows;
+      console.log("renderdata: "+renderData.threads.threadname);
+      var imagelink = results.rows[0].image;
+
+      if(imagelink===null || imagelink===''){
+        imageset = false;
+      }
+      else {
+        imageset = true;
+      }
+      if(req.session && req.session.user) {
+           console.info(req.session.user);
+           loggedin = true;
+           var usern = req.session.user.username;
+      }
+      res.render('profile', {loggedin:loggedin,
+                             imagelink:imagelink,
+                             imageset:imageset,
+                             renderData:renderData,
+                             usern:usern
+      });
+    });
   });
 }
 
