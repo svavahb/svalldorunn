@@ -84,6 +84,8 @@ block content
         name="image"
         class="form-control"
         )
+      if(imageerror == true)
+        p(class='alert alert-danger') Þetta er ekki gildur linkur!
       label(for='textarea') Skrifaðu stutta lýsingu um þig:
       textarea(id='textarea'
               class='form-control'

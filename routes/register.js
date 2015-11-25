@@ -8,7 +8,7 @@ var xss = require('xss');
 var router = express.Router();
 var loggedin = false;
 var registered = true;
-var nameerror, emailerror;
+var nameerror, emailerror, imageerror;
 var usernameerror, emerror;
 var usernameput, passwordput, passwordput2, nameput, emailput, imageput, aboutput;
 
@@ -19,6 +19,7 @@ router.get('/', function(req, res) {
   usernameerror = false;
   emerror = false;
   registered = true;
+  imageerror = true;
   res.render('register', {loggedin:loggedin,
                           usernameput : '',
                           passwordput : '',
@@ -37,6 +38,7 @@ router.post('/', function(req, res) {
   usernameerror = false;
   emerror = false;
   registered = true;
+  imageerror = false;
 
   usernameput = req.body.username;
   passwordput = req.body.password;
@@ -71,6 +73,10 @@ router.post('/', function(req, res) {
   if (req.body.image==""){
     req.body.image = 'http://oi64.tinypic.com/5o5nc0.jpg';
   }
+  if(!validate.isImage(req.body.image)) {
+    imageerror = true;
+    registered = false;
+  }
 
 
       var hash = bcrypt.hashSync(req.body.password);
@@ -97,6 +103,7 @@ router.post('/', function(req, res) {
                                   nopassword:nopassword,
                                   nameerror:nameerror,
                                   emailerror:emailerror,
+                                  imageerror:imageerror,
                                   loggedin:loggedin,
                                   usernameput:usernameput,
                                   emailput:emailput,
@@ -113,6 +120,7 @@ router.post('/', function(req, res) {
                                 nopassword:nopassword,
                                 nameerror:nameerror,
                                 emailerror:emailerror,
+                                imageerror:imageerror,
                                 loggedin:loggedin,
                                 usernameput:usernameput,
                                 emailput:emailput,
@@ -131,6 +139,7 @@ router.post('/', function(req, res) {
                                 nopassword:nopassword,
                                 nameerror:nameerror,
                                 emailerror:emailerror,
+                                imageerror:imageerror,
                                 loggedin:loggedin,
                                 usernameput:usernameput,
                                 emailput:emailput,

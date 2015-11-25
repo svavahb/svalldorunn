@@ -50,6 +50,8 @@ block content
               class='btn btn-primary'
               ) vista mynd
         br
+    if(imageerror)
+      p.alert.alert-danger Þetta er ekki gildur linkur!
         
     if(renderData.user.username!=usern)
       h4 Þræðir sem #{renderData.user.name} hefur búið til:

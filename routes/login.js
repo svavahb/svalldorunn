@@ -59,6 +59,7 @@ router.post('/', function(req, res) {
         // Store the user's primary key
         // in the session store to be retrieved,
         // or in this case the entire user object
+        loggedin = true;
         req.session.user = user;
         res.redirect('/profile/'+req.session.user.username);
       });

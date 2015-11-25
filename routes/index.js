@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
        loggedin = true;
        var usern = req.session.user.username;
   }
+  console.log(loggedin);
   res.render('index', {session : req.session, usern:usern, loggedin:loggedin });
 });
 
