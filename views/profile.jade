@@ -16,7 +16,7 @@ block content
     p#profile Skráð e-mail: 
       span.profileText #{renderData.user.email}
     p#profile Um mig:
-    p #{renderData.user.about}
+      p #{renderData.user.aboutme}
     if(renderData.user.username!=usern)
       
     
@@ -51,6 +51,7 @@ block content
               class='btn btn-primary'
               ) vista mynd
         br
+        
     if(renderData.user.username!=usern)
       h4 Þræðir sem #{renderData.user.name} hefur búið til:
       if renderData.threads

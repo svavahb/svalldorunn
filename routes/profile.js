@@ -91,6 +91,7 @@ function login(req, res){
       renderData.user = results.rows[0];
       renderData.threads = results2.rows;
       console.log("renderdata: "+renderData.threads.threadname);
+
       if(results.rows[0]) {
         var imagelink = results.rows[0].image;
       }

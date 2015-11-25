@@ -1,0 +1,4 @@
+DATABASE_URL=postgres://mfjipppstqpouz:aA2AfuGMungbamweau7SCtwcjM@ec2-54-217-240-205.eu-west-1.compute.amazonaws.com:5432/de06nqtrlg1lkt
+NODE_ENV=development
+PORT=2000
+DEBUG=svalldorunn:*
