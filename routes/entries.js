@@ -59,7 +59,11 @@ function postRender(req, res) {
   console.log(req.session);
   var parameters = [req.params.id];
 
-  dbUtils.queryDb(login, parameters, function(err, results) {
+  var threadName = "SELECT * FROM threads WHERE id=$1";
+  var par = [req.params.id];
+  console.log("id: "+req.params.id);
+
+  dbUtils.queryDb(threadName, par, function(err, results) {
     if(err) {
       res.render('login', {loggedin:loggedin});
       return console.error('error fetching client from pool', err);

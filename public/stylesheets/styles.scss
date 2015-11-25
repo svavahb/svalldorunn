@@ -7,11 +7,12 @@
 
 body {
   font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif; display: flex;
-  min-height: 100vh;
+  min-height: 98vh;
   flex-direction: column;
-  overflow-x: hidden;
-
+  overflow: auto;
 }
+
+
 header {
   box-sizing: border-box;
   background-image: url(/images/background.jpg);
@@ -19,8 +20,7 @@ header {
   background-repeat: no-repeat;
   position: fixed;
   z-index: 100;
-  //overflow: hidden;
-  padding-left: 10%;
+  padding-left: 8%;
   padding-top: 5%;
   margin: 0;
   width: 100%;
@@ -127,17 +127,18 @@ ul {
 
 .profileHeader{
   color: black;
-  font-size: 40px;
+  font-size: 30px;
   //text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 #profile{
-  font-size:20px;
+  font-size:15px;
 }
 
 .profileImg{
   margin-right:3%;
 }
+
 img{
   margin-bottom: 10px;
 }
@@ -186,5 +187,9 @@ textarea{
 }
 
 .list-group-item{
+  margin-bottom: 10px;
+}
+
+.form-control{
   margin-bottom: 10px;
 }

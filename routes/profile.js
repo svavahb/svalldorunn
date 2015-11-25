@@ -7,7 +7,7 @@ var loggedin = true;
 var xss = require('xss');
 
 router.get('/:username', ensureLoggedIn, login);
-router.post('/:username', ensureLoggedIn, changePic );
+router.post('/:username', ensureLoggedIn, changePic);
 
 function ensureLoggedIn(req, res, next){
   console.log("ensurefall");
@@ -41,29 +41,38 @@ function changePic(req, res){
         return console.error('error fetching client from pool', err);
       }
 
-      var imageset;
-      renderData.user = results.rows[0];
-      console.log("renderdatausertype: "+typeof renderData.user);
-      if(results.rows[0]) {
-        var imagelink = results.rows[0].image;
-      }
+      var querystr2 = "SELECT * FROM threads WHERE username=$1";
 
-      if(imagelink===null || imagelink===''){
-        imageset = false;
-      }
-      else {
-        imageset = true;
-      }
-      if(req.session && req.session.user) {
-           console.info(req.session.user);
-           loggedin = true;
-           var usern = req.session.user.username;
-      }
-      res.render('profile', {loggedin:loggedin,
-                             usern:usern,
-                             imagelink:imagelink,
-                             imageset:imageset,
-                             renderData:renderData
+      dbUtils.queryDb(querystr2, parameters, function(err, results2){
+        if(err) {
+          return console.error('error fetching client from pool', err);
+        }
+
+        var imageset;
+        renderData.user = results.rows[0];
+        renderData.threads = results2.rows;
+        console.log("renderdatausertype: "+typeof renderData.user);
+        if(results.rows[0]) {
+          var imagelink = results.rows[0].image;
+        }
+
+        if(imagelink===null || imagelink===''){
+          imageset = false;
+        }
+        else {
+          imageset = true;
+        }
+        if(req.session && req.session.user) {
+             console.info(req.session.user);
+             loggedin = true;
+             var usern = req.session.user.username;
+        }
+        res.render('profile', {loggedin:loggedin,
+                               usern:usern,
+                               imagelink:imagelink,
+                               imageset:imageset,
+                               renderData:renderData
+        });
       });
     });
   });
