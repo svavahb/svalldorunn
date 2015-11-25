@@ -1,7 +1,6 @@
 var createButton = document.querySelector('#createButton');
 var threads = document.querySelector('#threads').childNodes;
 var categories = document.querySelector('#categories').childNodes;
-var selected;
 
 createButton.addEventListener('click', function(event){
   event.preventDefault();
@@ -10,26 +9,32 @@ createButton.addEventListener('click', function(event){
 });
 
 for(var i=0; i<categories.length; i++) {
-  categories[i].addEventListener("focus", onFocus);
-  categories[i].addEventListener("blur", onBlur);
+  categories[i].addEventListener("click", onClick);
 }
 
-function onFocus(event) {
+function onClick(event) {
   event.preventDefault();
+  for(var i=0; i<categories.length; i++) {
+    categories[i].classList.remove('active');
+  }
   this.classList.add('active');
-  selected = this;
-  console.log("bla");
-}
-
-function onBlur(event) {
-  event.preventDefault();
-  this.classList.remove('active');
+  showThreads(this.id);
 }
 
 
-function showThreads(event) {
+function showThreads(cat) {
+  if(cat=='Allir') {
+    for(var i=0; i<threads.length; i++) {
+      threads[i].classList.remove('hidden');
+    }
+    return;
+  }
+  var str = 'flokkur: '+ cat;
   for(var i=0; i<threads.length; i++) {
-    if(threads[i].childNodes[1]=='fantasy') {
+    if(threads[i].childNodes[3].innerHTML==str) {
+      threads[i].classList.remove('hidden');
+    }
+    else {
       threads[i].classList.add('hidden');
     }
   }

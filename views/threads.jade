@@ -3,29 +3,29 @@ extends layout
 block content
   
   ul.nav.nav-tabs#categories
-    li(role='presentation').active
+    li(role='presentation' id='Allir').active
       a(href="#") Allir þræðir
-    li(role='presentation')
+    li(role='presentation' id='Gamanmyndir')
       a(href="#") Gamanmyndir
-    li(role='presentation')
+    li(role='presentation' id='Rómantískarmyndir')
       a(href="#") Rómantískar myndir
-    li(role='presentation')
+    li(role='presentation' id='Dramatískarmyndir')
       a(href="#") Dramatískar myndir
-    li(role='presentation')
+    li(role='presentation' id='Spennumyndir')
       a(href="#") Spennumyndir
-    li(role='presentation')
+    li(role='presentation' id='Hryllingsmyndir')
       a(href="#") Hryllingsmyndir
-    li(role='presentation')
+    li(role='presentation' id='Ævintýramyndir')
       a(href="#") Ævintýramyndir
-    li(role='presentation')
+    li(role='presentation' id='Sci-fimyndir')
       a(href="#") Sci-fi myndir
-    li(role='presentation')
+    li(role='presentation' id='Íslenskarmyndir')
       a(href="#") Íslenskar myndir
-    li(role='presentation')
+    li(role='presentation' id='Heimildamyndir')
       a(href="#") Heimildamyndir
-    li(role='presentation')
+    li(role='presentation' id='Leikarar')
       a(href="#") Leikarar
-    li(role='presentation')
+    li(role='presentation' id='Annað')
       a(href="#") Annað   
   
   h2 Spjallborð
@@ -67,9 +67,9 @@ block content
           option(value='Spennumyndir') Spennumyndir
           option(value='Hryllingsmyndir') Hryllingsmyndir
           option(value='Ævintýramyndir') Ævintýramyndir
-          option(value='Sci-fi myndir') Sci-fi myndir
+          option(value='Sci-fimyndir') Sci-fi myndir
           option(value='Íslenskarmyndir') Íslenskar myndir
-          option(value='Heimildarmyndir') Heimildamyndir
+          option(value='Heimildamyndir') Heimildamyndir
           option(value='Leikarar') Leikarar
           option(value='Annað') Annað
         button(type='submit'
