@@ -10,7 +10,7 @@ var loggedin = false;
 var registered = true;
 var nameerror, emailerror;
 var usernameerror, emerror;
-var usernameput, passwordput, passwordput2, nameput, emailput, imageput;
+var usernameput, passwordput, passwordput2, nameput, emailput, imageput, aboutput;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -24,7 +24,8 @@ router.get('/', function(req, res) {
                           passwordput : '',
                           nameput : '',
                           emailput : '',
-                          imageput : ''});
+                          imageput : '',
+                          aboutput: ''});
 });
 
 /* GET home page. */
@@ -43,6 +44,7 @@ router.post('/', function(req, res) {
   nameput = req.body.heiti;
   emailput = req.body.email;
   imageput = req.body.image;
+  aboutput = req.body.about;
 
   if(usernameput === ""){
     var nousername = true;
@@ -72,8 +74,8 @@ router.post('/', function(req, res) {
 
 
       var hash = bcrypt.hashSync(req.body.password);
-      var queryStr = "INSERT INTO users (username, hash, email, name, image) VALUES ($1, $2, $3, $4, $5)";
-      var parameters = [req.body.username, hash, req.body.email, req.body.heiti, req.body.image];
+      var queryStr = "INSERT INTO users (username, hash, email, name, image, aboutme) VALUES ($1, $2, $3, $4, $5, $6)";
+      var parameters = [req.body.username, hash, req.body.email, req.body.heiti, req.body.image, req.body.about];
 
       if(registered == true){
       dbUtils.queryDb(queryStr, parameters, function(err) {
@@ -102,7 +104,8 @@ router.post('/', function(req, res) {
                                   usernameerror:usernameerror,
                                   emerror:emerror,
                                   passworderror:passworderror,
-                                  imageput:imageput});
+                                  imageput:imageput,
+                                  aboutput:aboutput});
           return console.error('error fetching client from pool', err);
         }
         res.render('register', {registered:registered,
@@ -117,7 +120,8 @@ router.post('/', function(req, res) {
                                 usernameerror:usernameerror,
                                 emerror:emerror,
                                 passworderror:passworderror,
-                                imageput:imageput});
+                                imageput:imageput,
+                                aboutput:aboutput});
       });
     }
     else {
@@ -132,7 +136,8 @@ router.post('/', function(req, res) {
                                 emailput:emailput,
                                 nameput:nameput,
                                 passworderror:passworderror,
-                                imageput:imageput});
+                                imageput:imageput,
+                                aboutput:aboutput});
                               }
   });
 
