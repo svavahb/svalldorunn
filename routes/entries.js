@@ -21,6 +21,16 @@ function ensureLoggedIn(req, res, next){
 
 function getRender(req, res) {
   var login = "select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC";
+  var threadName = "SELECT * FROM threads WHERER id=$1";
+  var par = [req.params.id]
+
+  dbUtils.queryDb(par, threadName, function(err,results) {
+    if(err) {
+      res.render('login', {loggedin:loggedin});
+      return console.error('error fetching client from pool', err);
+    }
+    var renderThreads = results.rows;
+
   console.log(req.session);
   threadId = req.params.id;
   console.log(threadId);
@@ -38,7 +48,9 @@ function getRender(req, res) {
                           loggedin:loggedin,
                           entries:entries,
                           usern:usern,
-                          threadId:threadId});
+                          threadId:threadId,
+                          renderThreads:renderThreads});
+    });
   });
 }
 
