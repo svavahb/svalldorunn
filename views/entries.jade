@@ -12,36 +12,37 @@ block content
         document.getElementById('bla').classList.add('hidden');
       }
 
-    div.col-md-6.col-s-6.col-xs-12.pull-right
+    section.col-md-6.col-s-6.col-xs-12.pull-right
       button(type='submit'
             value='submit'
             class='btn btn-primary'
             onclick='show()'
             id='bla'
             ) Taka þátt í umræðunni!  
-      br
+       
+      
       form.form-group.hidden#createThread(method='post' action='/entries/#{threadId}')
         textarea(id='textarea'
-                class='form-control '
+                class='form-control'
                 name='textarea'
                 rows = '7'
                 columns = '30'
                 )
-        br
+        
     
         button(type='submit'
               value='submit'
               class='btn btn-primary'
               ) Vista innlegg
-        br
+         
       
-    div.col-md-6.col-s-6.col-xs-12.pull-left
+    section.col-md-6.col-s-6.col-xs-12.pull-left
       if entries
         ul.media-list(class="entries")
           each u in entries.rows   
             li.media
               div.media-left
-                img(src='#{u.image}' height='64px')
+                img(src='#{u.image}' height='64px' alt='profile picture for #{u.username}')
               div.media-body
                 h4.media-heading #{u.username}
                 p.dates= moment(u.date).calendar()

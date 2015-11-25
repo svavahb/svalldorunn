@@ -1,8 +1,7 @@
 html {
   box-sizing: border-box;
   font-size: 10px;
-  position: relative;
-  word-break: break-all; }
+  position: relative; }
 
 body {
   font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -147,3 +146,9 @@ img {
 .media-body, .media-left {
   display: block;
   width: 50%; }
+
+textarea {
+  margin-bottom: 10px; }
+
+.list-group-item {
+  margin-bottom: 10px; }

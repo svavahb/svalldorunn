@@ -3,7 +3,6 @@
   font-size: 10px;
   //min-height: 100%;
   position:relative;
-  word-break: break-all;
 }
 
 body {
@@ -142,7 +141,6 @@ img{
   margin-bottom: 10px;
 }
 
-
 .profileText{
   font-weight: bold;
 }
@@ -173,14 +171,6 @@ img{
   padding-top: 10px;
 }
 
-#createButton, #createThread{
-
-}
-
-#bla{
-  //position: fixed;
-}
-
 #titill, #category{
   margin-bottom: 10px;
 }
@@ -188,4 +178,12 @@ img{
 .media-body, .media-left {
   display: block;
   width: 50%;
+}
+
+textarea{
+  margin-bottom: 10px;
+}
+
+.list-group-item{
+  margin-bottom: 10px;
 }
