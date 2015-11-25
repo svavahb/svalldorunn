@@ -1,0 +1,195 @@
+  html {
+  box-sizing: border-box;
+  font-size: 10px;
+  //min-height: 100%;
+  position:relative;
+}
+
+body {
+  font: 1.4rem "Lucida Grande", Helvetica, Arial, sans-serif; display: flex;
+  min-height: 98vh;
+  flex-direction: column;
+  overflow: auto;
+}
+
+
+header {
+  box-sizing: border-box;
+  background-image: url(/images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  z-index: 100;
+  padding-left: 8%;
+  padding-top: 5%;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid #f1f1f1;
+  .left {
+    flex: 1;
+  }
+  .right {
+    padding-top: 0%;
+    padding-left: 45%;
+    flex: 1;
+  }
+}
+
+h1{
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+main {
+  padding: 200px 2% 0% 7%;
+  //padding-top: 200px;
+  flex: 1;
+}
+
+footer{
+  border-top:2px solid #f1f1f1;
+  //margin-top:5px;
+  //height: 30 px;
+  height: 55px;
+  //float: left;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.footerSocials{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.pNames{
+  display: flex;
+  justify-content: left;
+}
+
+.socials a{
+  font-size: 0px;
+}
+
+.socials{
+    padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials a:not(:first-of-type) {
+  padding-left: 14px;
+}
+
+.socialslink {
+  opacity: 0.4;
+}
+
+.socialslink:hover {
+  opacity: 1;
+}
+
+.socials a img { transition: transform ease 0.3s; }
+.socials a img:hover { transform: translateY(-3px); }
+
+
+.link{
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+.pThreadname{
+  font-size : 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.pCategory{
+  font-size:12px;
+}
+
+.link:hover{
+  border-bottom: 2px solid #f1f1f1;
+  color:white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.entries{
+  padding-top: 20px;
+}
+
+.profileHeader{
+  color: black;
+  font-size: 30px;
+  //text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+#profile{
+  font-size:15px;
+}
+
+.profileImg{
+  margin-right:3%;
+}
+
+img{
+  margin-bottom: 10px;
+}
+
+.profileText{
+  font-weight: bold;
+}
+
+.dates{
+  font-style: italic;
+}
+
+.xss-holder {
+  background-color: white;
+  color: black;
+  height: 100px;
+  width: 100%;
+}
+
+#postuser{
+  font-size: 25px;
+  text-decoration: underline;
+  padding-top: 20px;
+}
+
+#postdate{
+  font-size: 10px;
+}
+
+#postentry{
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+#titill, #category{
+  margin-bottom: 10px;
+}
+
+.media-body, .media-left {
+  display: block;
+  width: 50%;
+}
+
+textarea{
+  margin-bottom: 10px;
+}
+
+.list-group-item{
+  margin-bottom: 10px;
+}
+
+.form-control{
+  margin-bottom: 10px;
+}
