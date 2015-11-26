@@ -3,7 +3,7 @@
 var pg = require('pg');
 database = 'postgres://mfjipppstqpouz:aA2AfuGMungbamweau7SCtwcjM@ec2-54-217-240-205.eu-west-1.compute.amazonaws.com:5432/de06nqtrlg1lkt';
 //var database = 'postgres://postgres:lalli@localhost/svalldorunn';
-//var DATABASE = process.env.DATABASE_URL;
+var DATABASE = process.env.DATABASE_URL;
 
 exports.queryDb = function(queryStr, parameters, then) {
   pg.connect(database, function(err, client, done) {
