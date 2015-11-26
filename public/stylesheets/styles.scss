@@ -12,7 +12,6 @@ body {
   overflow: auto;
 }
 
-
 header {
   box-sizing: border-box;
   background-image: url(/images/background.jpg);
@@ -45,6 +44,10 @@ main {
   padding: 200px 2% 0% 7%;
   //padding-top: 200px;
   flex: 1;
+}
+
+a, a:hover{
+  color:black;
 }
 
 footer{
@@ -186,22 +189,6 @@ textarea{
   margin-bottom: 10px;
 }
 
-.list-group-item{
+.list-group-item, .form-control{
   margin-bottom: 10px;
 }
-
-.form-control{
-  margin-bottom: 10px;
-}
-
-svg {
-    }
-
-.st0{fill:#D1C3AD;}
-.st1{fill:none;stroke:#BEA884;stroke-width:2;stroke-miterlimit:10;}
-.st2{fill:#CD7640;}
-.st3{fill:none;stroke:#E0D2BE;stroke-width:2;stroke-miterlimit:10;}
-.st4{fill:#020204;}
-.st5{fill:#FFFFFF;}
-.st6{fill:#BCB5AB;}
-.st7{fill:#9E9993;}

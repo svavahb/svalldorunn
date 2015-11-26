@@ -8,6 +8,7 @@ var threadId;
 
 router.get('/:id', ensureLoggedIn, getRender);
 router.post('/:id', postEntries, postRender);
+router.delete('/:id', deleteEntry, getRender);
 
 function ensureLoggedIn(req, res, next){
     if(req.session.user){
@@ -19,7 +20,7 @@ function ensureLoggedIn(req, res, next){
 }
 
 function getRender(req, res) {
-  var login = 'select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
+  var login = 'SELECT * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
   var threadName = 'SELECT * FROM threads WHERE id=$1';
   var par = [req.params.id];
   console.log('id: '+req.params.id);
@@ -104,5 +105,18 @@ function postEntries(req, res, next) {
   });
 }
 
+function deleteEntry(req, res, next) {
+  var querystr = 'DELETE FROM entries WHERE id=$1';
+  var parameter= [req.body.entryid];
+
+  console.log('delete');
+
+  dbUtils.queryDb(querystr, parameter, function(err) {
+    if(err){
+      return console.error('error fetching entries from pool', err);
+    }
+    next();
+  });
+}
 
 module.exports = router;
