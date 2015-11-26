@@ -1,28 +1,45 @@
 ### Skýrsla fyrir Lokaverkefni
 
-  Við Halldóra, Svara og Þórunn ákváðum að vera saman í hóp að vinna þetta
-verkefni. Við vorum lengi að hugsa hvernig síðu við ættum að gera. Að lokum
-ákváðum við að gera spjallþræði.
-  Við byrjuðum á því að betrum bæta nýskráninguna með því að bæta við fleiri
-upplýsingum um notandann og gera betri villu prófanir á þeim. Þær staðfesta
-að upplýsingar séu rétt upp settar og engir árekstrar séu í gagnagrunninum
-miðað við þær takmarkanir sem voru settar á hann. Til dæmis að hvert notendanafn
-og e-mail þurfi að vera einstök og þarf að staðfesta lykilorð.
-  Okkur datt svo í hug að bæta við notendasvæðum, þar sem er hægt að skoða og
-bæta við upplýsingum fyrir hvern notanda, þar á meðal hans eigin þræði. Við
-vildum að hægt væri að skipta um mynd og lykilorð. Seinna kom sú hugmynd að hægt           <------
-væri að skoða notendasvæði hjá öðrum notendum, með því að velja notendanafn eða
-mynd í athugasemdum undir þráðum. Þar kom upp smá vesen þar sem ekki var hægt að
-fara inná notendasvæði hjá öðrum án þess að virðast vera
-skráður út, þar sem áður hafði ekki verið hægt að fara inná notendasvæði sem þú
-átti ekki. En eftir smá púsl hafðist þetta að lokum.
-  Í grunninn þegar við byrjuðum verkefnið vorum við með verkefni 6 þar sem fyrir
-var hægt að setja á vegg. Útfrá því byggðum við þræðina og athugasemdir. Svo
-datt okkur í hug að sniðugt væri að flokka þræðina eftir umræðuefni. En þá kom
-upp það vandamál hver umræðuefnin ættu að vera. Þar sem við erum allar bíó
-starfsmenn kom sú hugmynd að hafa síðuna um bíómyndir og ákváðum að hafa
-flokkana mismunandi gerðir af bíómyndum. Því næst vildum við hafa flipa til að
-skoða þræðina í hverjum flokki. Það reyndist smá meira vesen en við bjuggumst
-við þar sem við vildum ekki hafa margar mismundandi slóðir, heldur að
-mismunandi upplýsingar myndu birtast þegar hver flipi er valinn. Þar notuðumst
-við við framenda javascript sem tengdist jade.
+  Halldóra, Svava og Þórunn ákváðum að vera saman í hóp að vinna þetta
+verkefni. Það var mikið pælt og lengi hugsað hvernig síðu ætti að gera. Að lokum
+var ákveðið að gera síðu með spjallþráðum.
+  Í grunninn var notast við verkefni 6 þar sem fyrir var nýskráning, innskráning
+og hægt að skrifa á veggi. Byrjað var á því að betrum bæta nýskráninguna með því
+að bæta við fleiri upplýsingum um notandann og gera betri villu prófanir. Þær
+staðfesta að upplýsingar séu rétt upp settar og engir árekstrar séu í
+gagnagrunninum miðað við þær takmarkanir sem voru settar á hann. Til dæmis að
+hvert notendanafn og e-mail þarfi að vera einstakt og að staðfesta þarf
+lykilorð.
+  Bætt var við notendasvæðum þar sem notandinn getur skoðað og breytt sínum
+upplýsingum. Einnig er hægt að skoða 'mína þræði' þar inná. Seinna kom sú
+hugmynd að hægt væri að skoða notendasíðu hjá öðrum notendum, en hægt er nálgast
+þá í athugasemdum inní þráðunum, með því að klikka annaðhvort á notendanafnið
+eða notendamyndina þeirra. Þar kom upp smá vesen þar sem í fyrra verkefni var
+ekki hægt að fara inná notendasvæði nema að notandinn eigi það svæði, annars var
+notandinn skráður út. Eftir smá púsl hafðist þetta nú að lokum.
+  Útfrá fyrra verkefni voru byggðir þræðir og athugasemdir, þar sem 'veggurinn'
+úr fyrra verkefni varð að athugasemdunum í þráðunum, en þurfti að tengja
+athugasemdirnar við sinn þráð. Svo datt meðlimum hópsins að sniðugt væri að
+flokka þræðina eftir umræðuefni. En þá kom upp það vandamál hver umræðuefnin
+ættu að vera og þar með þrengja um hvað síðan ætti að vera. Þar sem meðlimir eru
+allar bíó starfsmenn kom upp sú hugmynd að hafa síðuna um bíómyndir og að umræðu
+efnið væri mismundandi gerðir af bíómyndum og leikarar. Því næst voru meðlimir í
+vandræðum með hvernig ætti að birta hvern flokk, hugmyndin var að hafa flipa til
+að skoða þræðina í hverjum flokki. Það reyndist smá meira vesen en búist var við
+þar sem það leiðir inná mismundandi slóðir, notast var þá við framenda javascript
+sem tengdist 'jade' til að fá mismundandi upplýsingar til að birtast þegar nýr
+flipi er valinn án þess að fara inná nýja slóð.
+  Þar sem meðlimir hópsins eru ekki í nákvæmlega sama námi innan
+tölvunarfræðinnar gekk stundum erfilega að mæla sér mót þar sem allir gætu mætt
+á sama tíma, en nýttur var mesti tíminn sem gafst. Einnig var notast við
+'Github' sem einfaldaði samvinnuna þó ekki allir væru mættir á sama stað. Oft
+kom þó upp vesen með 'Github', gaf upp villur með 'pull' og 'push'. Það fór
+stundum leiðinlega mikill tími í að reyna að laga villur sem 'Github' gaf.
+  Í gegnum allt verkefnið gaf 'jshint' fleiri tugi villa þegar verkefnið var
+keyrt upp með 'gulp'. Allar villurnar voru t.d á 'require' eða 'console', sem
+meðlimum fannst einstaklega skítið. Leitað var til dæmatímakennara sem benti á
+að þyrfti að nota 'jshintrc' skrá sem skilgreinir reglur og segir 'jshint' hvað
+má og hvað ekki.
+  Fyrir utan einstakar leiðinlegar villur og tímabil þar sem meðlimir voru stopp
+gekk samvinnan mjög vel. Allir meðlimir þekkjast vel og hafa unnið saman áður og
+voru óhræddir að tjá sig um hin ýmsu mál.
