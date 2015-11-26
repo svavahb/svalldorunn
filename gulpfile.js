@@ -6,6 +6,7 @@ var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync').create();
 var jshint = require('gulp-jshint');
 
+
 var isProd = false;
 
 //hallú
@@ -71,8 +72,7 @@ gulp.task('inspect', function() {
 
 gulp.task('setProdEnv', function() { isProd = true; });
 
-
 gulp.task('serve', ['nodemon', 'browser-sync', 'styles', 'inspect']);
 // set production enviroment, then serve.
 gulp.task('serve-prod', ['setProdEnv','serve']);
-gulp.task('default', ['serve']);
+gulp.task('default', ['inspect', 'serve']);
