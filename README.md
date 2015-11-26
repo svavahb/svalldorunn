@@ -53,7 +53,6 @@ Stilla gagnarunninn í
 -
 
 - npm install
-- npm install gulp
 - gulp
 
 'schema.sql' inniheldur uppsetninguna á gagnagrunninum
