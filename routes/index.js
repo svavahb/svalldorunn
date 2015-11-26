@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var loggedin = false;
-
+var usern;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -11,10 +11,12 @@ router.get('/', function(req, res) {
   if(req.session && req.session.user) {
        console.info(req.session.user);
        loggedin = true;
-       var usern = req.session.user.username;
+       usern = req.session.user.username;
   }
   console.log(loggedin);
-  res.render('index', {session : req.session, usern:usern, loggedin:loggedin });
+  res.render('index', {session : req.session,
+                       usern:usern,
+                       loggedin:loggedin });
 });
 
 

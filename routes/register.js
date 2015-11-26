@@ -8,9 +8,10 @@ var xss = require('xss');
 var router = express.Router();
 var loggedin = false;
 var registered = true;
-var nameerror, emailerror, imageerror;
-var usernameerror, emerror;
-var usernameput, passwordput, passwordput2, nameput, emailput, imageput, aboutput;
+var nameerror, emailerror, imageerror, usernameerror, emerror, passworderror;
+var usernameput, passwordput, passwordput2, nameput,
+    emailput, imageput, aboutput;
+var nousername, nopassword;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -48,13 +49,13 @@ router.post('/', function(req, res) {
   imageput = req.body.image;
   aboutput = req.body.about;
 
-  if(usernameput === ""){
-    var nousername = true;
+  if(usernameput === ''){
+    nousername = true;
     registered = false;
   }
 
   if(!validate.length1(passwordput, 1)){
-    var nopassword = true;
+    nopassword = true;
     registered = false;
   }
 
@@ -67,10 +68,10 @@ router.post('/', function(req, res) {
     registered = false;
   }
   if(passwordput!==passwordput2){
-    var passworderror = true;
+    passworderror = true;
     registered = false;
   }
-  if (req.body.image==""){
+  if (req.body.image===''){
     req.body.image = 'http://oi64.tinypic.com/5o5nc0.jpg';
   }
   if(!validate.isImage(req.body.image)) {
@@ -80,10 +81,11 @@ router.post('/', function(req, res) {
 
 
       var hash = bcrypt.hashSync(req.body.password);
-      var queryStr = "INSERT INTO users (username, hash, email, name, image, aboutme) VALUES ($1, $2, $3, $4, $5, $6)";
-      var parameters = [req.body.username, hash, req.body.email, req.body.heiti, req.body.image, req.body.about];
+      var queryStr = 'INSERT INTO users (username, hash, email, name, image, aboutme) VALUES ($1, $2, $3, $4, $5, $6)';
+      var parameters = [req.body.username, hash, req.body.email,
+                        req.body.heiti, req.body.image, req.body.about];
 
-      if(registered == true){
+      if(registered === true){
       dbUtils.queryDb(queryStr, parameters, function(err) {
         if(err) {
           if((/.*(username).*/).test(err)) {
@@ -97,7 +99,7 @@ router.post('/', function(req, res) {
           }
           else {emerror=false;}
 
-          console.log("hæ");
+          console.log('hæ');
           res.render('register', {registered:registered,
                                   nousername:nousername,
                                   nopassword:nopassword,

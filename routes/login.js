@@ -6,8 +6,6 @@ var dbUtils = require('../utils/db-utils');
 var loggedin = false;
 var error = false;
 var bcrypt = require('bcrypt-nodejs');
-var xss = require('xss');
-
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -17,7 +15,7 @@ router.get('/', function(req, res) {
 /* GET home page. */
 router.post('/', function(req, res) {
 
-  var username = "SELECT * FROM users WHERE username = $1";
+  var username = 'SELECT * FROM users WHERE username = $1';
   var parameters = [req.body.username];
   /*var clean = xss(req.body.username);
   clean = xss(req.body.password);*/

@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 var dbUtils = require('../utils/db-utils');
 var loggedin = true;
-var xss = require('xss');
 var threadId;
 
 router.get('/:id', ensureLoggedIn, getRender);
@@ -20,10 +19,10 @@ function ensureLoggedIn(req, res, next){
 }
 
 function getRender(req, res) {
-  var login = "select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC";
-  var threadName = "SELECT * FROM threads WHERE id=$1";
+  var login = 'select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
+  var threadName = 'SELECT * FROM threads WHERE id=$1';
   var par = [req.params.id];
-  console.log("id: "+req.params.id);
+  console.log('id: '+req.params.id);
 
   dbUtils.queryDb(threadName, par, function(err, results) {
     if(err) {
@@ -34,7 +33,7 @@ function getRender(req, res) {
 
     console.log(req.session);
     threadId = req.params.id;
-    console.log("get: "+threadId);
+    console.log('get: '+threadId);
 
     dbUtils.queryDb(login, par, function(err,result) {
       if(err) {
@@ -55,13 +54,13 @@ function getRender(req, res) {
 }
 
 function postRender(req, res) {
-  var login = "select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC";
+  var login = 'select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
   console.log(req.session);
   var parameters = [req.params.id];
 
-  var threadName = "SELECT * FROM threads WHERE id=$1";
+  var threadName = 'SELECT * FROM threads WHERE id=$1';
   var par = [req.params.id];
-  console.log("id: "+req.params.id);
+  console.log('id: '+req.params.id);
 
   dbUtils.queryDb(threadName, par, function(err, results) {
     if(err) {
@@ -72,7 +71,7 @@ function postRender(req, res) {
 
     console.log(req.session);
     threadId = req.params.id;
-    console.log("post: "+threadId);
+    console.log('post: '+threadId);
 
     dbUtils.queryDb(login, parameters, function(err,result) {
       if(err) {
@@ -93,9 +92,9 @@ function postRender(req, res) {
 }
 
 function postEntries(req, res, next) {
-  var entry = "INSERT INTO entries (username, entry, date, threadid) VALUES ($1, $2, $3, $4)";
-  var info = [req.session.user.username, req.body.textarea, new Date(), threadId];
-  var clean = xss(req.body.textarea);
+  var entry = 'INSERT INTO entries (username, entry, date, threadid) VALUES ($1, $2, $3, $4)';
+  var info = [req.session.user.username, req.body.textarea, new Date(),
+              threadId];
 
   dbUtils.queryDb(entry, info, function(err) {
     if(err){
