@@ -81,7 +81,9 @@ router.post('/', function(req, res) {
 
 
       var hash = bcrypt.hashSync(req.body.password);
-      var queryStr = 'INSERT INTO users (username, hash, email, name, image, aboutme) VALUES ($1, $2, $3, $4, $5, $6)';
+      var queryStr = 'INSERT INTO users' +
+       ' (username, hash, email, name, image, aboutme)' +
+       ' VALUES ($1, $2, $3, $4, $5, $6)';
       var parameters = [req.body.username, hash, req.body.email,
                         req.body.heiti, req.body.image, req.body.about];
 

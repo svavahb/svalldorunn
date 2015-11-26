@@ -20,7 +20,8 @@ function ensureLoggedIn(req, res, next){
 }
 
 function getRender(req, res) {
-  var login = 'SELECT * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
+  var login = 'SELECT * FROM entries, users WHERE entries.threadid=$1' +
+    ' AND users.username=entries.username ORDER BY date ASC';
   var threadName = 'SELECT * FROM threads WHERE id=$1';
   var par = [req.params.id];
   console.log('id: '+req.params.id);
@@ -55,7 +56,8 @@ function getRender(req, res) {
 }
 
 function postRender(req, res) {
-  var login = 'select * FROM entries, users WHERE entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
+  var login = 'select * FROM entries, users WHERE entries.threadid=$1' +
+   ' AND users.username=entries.username ORDER BY date ASC';
   console.log(req.session);
   var parameters = [req.params.id];
 
@@ -93,7 +95,8 @@ function postRender(req, res) {
 }
 
 function postEntries(req, res, next) {
-  var entry = 'INSERT INTO entries (username, entry, date, threadid) VALUES ($1, $2, $3, $4)';
+  var entry = 'INSERT INTO entries (username, entry, date, threadid)' +
+   ' VALUES ($1, $2, $3, $4)';
   var info = [req.session.user.username, req.body.textarea, new Date(),
               threadId];
 

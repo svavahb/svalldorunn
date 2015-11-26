@@ -39,7 +39,8 @@ function getThreads(req, res) {
 }
 
 function newThread(req, res, next) {
-  var entry = 'INSERT INTO threads (threadname, username, date, category) VALUES ($1, $2, $3, $4)';
+  var entry = 'INSERT INTO threads (threadname, username, date, category)' +
+    ' VALUES ($1, $2, $3, $4)';
   var info = [req.body.threadTitle, req.session.user.username, new Date(),
               req.body.category];
 
@@ -60,7 +61,8 @@ function newThread(req, res, next) {
         return console.error('error fetching entries from pool', err);
       }
       var threadid = results.rows[0].id;
-      querystr = 'INSERT INTO entries (username, entry, date, threadid) VALUES ($1, $2, $3, $4)';
+      querystr = 'INSERT INTO entries (username, entry, date, threadid)' +
+        ' VALUES ($1, $2, $3, $4)';
       var parameters = [req.session.user.username, req.body.textarea,
                         new Date(), threadid];
       dbUtils.queryDb(querystr, parameters, function(err) {
