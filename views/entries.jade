@@ -43,11 +43,11 @@ block content
                   h4.media-heading #{u.username}
                 p.dates= moment(u.date).calendar()
                 p #{u.entry}
-                input.hidden(type='text' name='entryid' value=u.id)
               if(session.user.username==u.username)
+                form(method='post' action='/entries/delete/#{threadId}')
+                  input.hidden(type='text' name='entryid' value=u.entryid)
                   button(type='submit'
                         value='submit'
                         class='btn btn-danger btn-sm'
-                        method='delete'
                         ) Eyða innleggi
                       
