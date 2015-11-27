@@ -5,6 +5,7 @@ var router = express.Router();
 var dbUtils = require('../utils/db-utils');
 var loggedin = true;
 var threadnameerror = false;
+var nothreadname = false;
 
 router.get('/', ensureLoggedIn, getThreads);
 router.post('/', newThread, getThreads);
@@ -34,7 +35,8 @@ function getThreads(req, res) {
                           loggedin:loggedin,
                           threads:threads,
                           usern:usern,
-                          threadnameerror:threadnameerror});
+                          threadnameerror:threadnameerror,
+                          nothreadname:nothreadname});
     });
 }
 
@@ -44,11 +46,17 @@ function newThread(req, res, next) {
   var info = [req.body.threadTitle, req.session.user.username, new Date(),
               req.body.category];
 
+  if(req.body.threadTitle==='') {
+    nothreadname = true;
+    threadnameerror = false;
+    return next();
+  }
   dbUtils.queryDb(entry, info, function(err) {
     if(err){
       if((/.*(threads_threadname_key).*/).test(err)) {
         threadnameerror = true;
-        next();
+        nothreadname = false;
+        return next();
       }
       else {
         return console.error('error fetching entries from pool', err);
