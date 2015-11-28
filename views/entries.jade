@@ -6,14 +6,20 @@ block content
   
     p Þú ert skráður inn sem #{usern}!!
     h2 #{renderThreads.threadname}
+    if(session.user.username==renderThreads.username)
+    form(method='post' action='/')
+      input.hidden(type='text' name='threadid' value=threadId)
+      button(type='submit'
+            value='submit'
+            class='btn btn-danger btn-sm'
+            ) Eyða þræði
 
     section.col-md-6.col-s-6.col-xs-12.pull-right
       button(type='submit'
             value='submit'
             class='btn btn-primary'
             id='entryButton'
-            ) Taka þátt í umræðunni!  
-       
+            ) Taka þátt í umræðunni! 
       
       form.form-group.hidden#postEntry(method='post' action='/entries/#{threadId}')
         textarea(id='textarea'
@@ -22,14 +28,11 @@ block content
                 rows ='7'
                 columns ='30'
                 )
-        
-    
         button(type='submit'
               value='submit'
               class='btn btn-primary'
               ) Vista innlegg
          
-      
     section.col-md-6.col-s-6.col-xs-12.pull-left
       if entries
         ul.media-list(class="entries")
