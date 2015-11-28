@@ -9,6 +9,7 @@ var threadId;
 router.get('/:id', ensureLoggedIn, entryRender);
 router.post('/:id', postEntries, entryRender);
 router.post('/delete/:id', deleteEntry, entryRender);
+router.post('/', deleteThread);
 
 function ensureLoggedIn(req, res, next){
     if(req.session.user){
@@ -80,37 +81,23 @@ function deleteEntry(req, res, next) {
   });
 }
 
-function deleteRender(req, res) {
-  var login = 'SELECT * FROM entries, users WHERE entries.threadid=$1' +
-    ' AND users.username=entries.username ORDER BY date ASC';
-  var threadName = 'SELECT * FROM threads WHERE id=$1';
-  var par = [req.params.id];
+function deleteThread(req, res, next) {
+  var querys = 'DELETE FROM entries WHERE threadid=$1';
+  var par = [threadId];
 
-    dbUtils.queryDb(threadName, par, function(err, results) {
-    if(err) {
-      res.render('login', {loggedin:loggedin});
-      return console.error('error fetching client from pool', err);
+  dbUtils.queryDb(querys, par, function(err) {
+    if(err){
+      return console.error('error fetching entries from pool', err);
     }
-    var renderThreads = results.rows[0];
+    querys = 'DELETE FROM threads WHERE id=$1';
+    par = [threadId];
 
-    console.log(req.session);
-    threadId = req.params.id;
-
-    dbUtils.queryDb(login, par, function(err,result) {
-      if(err) {
-        res.render('login', {loggedin:loggedin});
-        return console.error('error fetching client from pool', err);
+    dbUtils.queryDb(querys, par, function(err) {
+      if(err){
+        return console.error('error fetching entries from pool', err);
       }
-      var entries = result;
-      var usern = req.session.user.username;
-
-      res.render('entries', {session : req.session,
-                            loggedin:loggedin,
-                            entries:entries,
-                            usern:usern,
-                            threadId:threadId,
-                            renderThreads:renderThreads});
-      });
+      res.redirect('/threads');
+    });
   });
 }
 
