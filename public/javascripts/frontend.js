@@ -3,7 +3,6 @@
 var threadButton = document.querySelector('#threadButton');
 var entryButton = document.querySelector('#entryButton');
 var picButton = document.querySelector('#picButton');
-var username = document.querySelector('#username').innerHTML;
 
 //Ef við erum í threads.jade
 if(picButton===null && entryButton===null) {
@@ -26,9 +25,9 @@ if(picButton===null && entryButton===null) {
       return;
     }
     var str = 'flokkur: '+ cat;
-    var usernstr = 'notandi: '+username;
+    var regex = /^(notandi).*/;
     for(var j=0; j<threads.length; j++) {
-      if(usernstr===threads[j].childNodes[3]) {
+      if(regex.test(threads[j].childNodes[3])) {
         if(threads[j].childNodes[4].innerHTML===str) {
           threads[j].classList.remove('hidden');
         }
