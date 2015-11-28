@@ -9,6 +9,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  loggedin=false;
   res.render('login', {title: 'BíóSpjallið',
                       loggedin:loggedin});
 });
