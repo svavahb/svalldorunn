@@ -28,7 +28,8 @@ function entryRender(req, res) {
 
   dbUtils.queryDb(threadName, par, function(err, results) {
     if(err) {
-      res.render('login', {loggedin:loggedin});
+      res.render('login', {title: 'BíóSpjallið',
+                          loggedin:loggedin});
       return console.error('error fetching client from pool', err);
     }
     var renderThreads = results.rows[0];
@@ -38,13 +39,15 @@ function entryRender(req, res) {
 
     dbUtils.queryDb(login, par, function(err,result) {
       if(err) {
-        res.render('login', {loggedin:loggedin});
+        res.render('login', {title: 'BíóSpjallið',
+                            loggedin:loggedin});
         return console.error('error fetching client from pool', err);
       }
       var entries = result;
       var usern = req.session.user.username;
 
-      res.render('entries', {session : req.session,
+      res.render('entries', {title: 'BíóSpjallið',
+                            session : req.session,
                             loggedin:loggedin,
                             entries:entries,
                             usern:usern,

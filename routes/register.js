@@ -21,7 +21,8 @@ router.get('/', function(req, res) {
   emerror = false;
   registered = true;
   imageerror = true;
-  res.render('register', {loggedin:loggedin,
+  res.render('register', {title: 'BíóSpjallið',
+                          loggedin:loggedin,
                           usernameput : '',
                           passwordput : '',
                           nameput : '',
@@ -102,7 +103,8 @@ router.post('/', function(req, res) {
           else {emerror=false;}
 
           console.log('hæ');
-          res.render('register', {registered:registered,
+          res.render('register', {title: 'BíóSpjallið',
+                                  registered:registered,
                                   nousername:nousername,
                                   nopassword:nopassword,
                                   nameerror:nameerror,
@@ -119,7 +121,8 @@ router.post('/', function(req, res) {
                                   aboutput:aboutput});
           return console.error('error fetching client from pool', err);
         }
-        res.render('register', {registered:registered,
+        res.render('register', {title: 'BíóSpjallið',
+                                registered:registered,
                                 nousername:nousername,
                                 nopassword:nopassword,
                                 nameerror:nameerror,
@@ -138,7 +141,8 @@ router.post('/', function(req, res) {
     }
     else {
 
-        res.render('register', {registered:registered,
+        res.render('register', {title: 'BíóSpjallið',
+                                registered:registered,
                                 nousername:nousername,
                                 nopassword:nopassword,
                                 nameerror:nameerror,

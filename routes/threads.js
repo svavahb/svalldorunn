@@ -25,14 +25,16 @@ function getThreads(req, res) {
 
     dbUtils.queryDb(threadlist, null, function(err,result) {
       if(err) {
-        res.render('login', {loggedin:loggedin});
+        res.render('login', {title: 'BíóSpjallið',
+                            loggedin:loggedin});
         return console.error('error fetching client from pool', err);
       }
       var threads = result;
       var usern = req.session.user.username;
 
 
-    res.render('threads', {session : req.session,
+    res.render('threads', {title: 'BíóSpjallið',
+                          session : req.session,
                           loggedin:loggedin,
                           threads:threads,
                           usern:usern,

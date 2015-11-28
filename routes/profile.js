@@ -64,7 +64,8 @@ function changePic(req, res){
              loggedin = true;
              usern = req.session.user.username;
         }
-        res.render('profile', {loggedin:loggedin,
+        res.render('profile', {title: 'BíóSpjallið',
+                               loggedin:loggedin,
                                usern:usern,
                                imagelink:imagelink,
                                imageset:imageset,
@@ -110,7 +111,8 @@ function login(req, res){
            loggedin = true;
            usern = req.session.user.username;
       }
-      res.render('profile', {loggedin:loggedin,
+      res.render('profile', {title: 'BíóSpjallið',
+                             loggedin:loggedin,
                              imagelink:imagelink,
                              imageset:imageset,
                              renderData:renderData,

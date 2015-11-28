@@ -9,7 +9,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('login', {loggedin:loggedin});
+  res.render('login', {title: 'BíóSpjallið',
+                      loggedin:loggedin});
 });
 
 /* GET home page. */
@@ -22,7 +23,8 @@ router.post('/', function(req, res) {
 
   dbUtils.queryDb(username, parameters, function(err,result) {
     if(err) {
-      res.render('login', {loggedin:loggedin});
+      res.render('login', {title: 'BíóSpjallið',
+                           loggedin:loggedin});
       return console.error('error fetching client from pool', err);
     }
 
@@ -31,7 +33,8 @@ router.post('/', function(req, res) {
     if(!user){
       error = true;
       loggedin = false;
-      res.render('login', {error:error,
+      res.render('login', {title: 'BíóSpjallið',
+                           error:error,
                            loggedin:loggedin});
       return console.error('!user', err);
     }
@@ -47,7 +50,8 @@ router.post('/', function(req, res) {
       if(!hashtrue){
         error = true;
         loggedin = false;
-        res.render('login', {error:error,
+        res.render('login', {title: 'BíóSpjallið',
+                             error:error,
                              loggedin:loggedin});
         return console.error('!hashtrue', err);
       }

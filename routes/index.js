@@ -14,7 +14,8 @@ router.get('/', function(req, res) {
        usern = req.session.user.username;
   }
   console.log(loggedin);
-  res.render('index', {session : req.session,
+  res.render('index', {title: 'BíóSpjallið',
+                       session : req.session,
                        usern:usern,
                        loggedin:loggedin });
 });
