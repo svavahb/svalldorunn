@@ -21,8 +21,8 @@ function ensureLoggedIn(req, res, next){
 
 function entryRender(req, res) {
   console.log('getRender');
-  var login = 'SELECT *, entries.id AS entryid FROM entries, users WHERE entries.threadid=$1' +
-    ' AND users.username=entries.username ORDER BY date ASC';
+  var login = 'SELECT *, entries.id AS entryid FROM entries, users WHERE' +
+  ' entries.threadid=$1 AND users.username=entries.username ORDER BY date ASC';
   var threadName = 'SELECT * FROM threads WHERE id=$1';
   var par = [req.params.id];
 

@@ -9,7 +9,7 @@ var nothreadname = false;
 
 router.get('/', ensureLoggedIn, getThreads);
 router.post('/', newThread, getThreads);
-router.post('/delete', deleteThread, getThreads)
+router.post('/delete', deleteThread, getThreads);
 
 function ensureLoggedIn(req, res, next){
     if(req.session.user){

@@ -10,14 +10,16 @@ block content
   section.col-md-6
     img(src='/images/movie.jpg' alt='popcorn, soda and more')
   
-  ul.list-inline.col-md-6.movielinks
-    li: a(href='http://imbd.com')
-      img(src='/images/imbd.png')
-    li: a(href='http://sambioin.is')
-      img(src='/images/sambio.png')
-    li: a(href='http://smarabio.is')
-      img(src='/images/smarabio.jpg')
-    li: a(href='http://smarabio.is')
-      img(src='/images/haskolabio.jpg')
-    li: a(href='http://kvikmyndir.is')
-      img(src='/images/kvikmyndir.png')
+  div.container-fluid
+    a.col-xs-6.col-sm-4.col-md-2.movielinks(href='http://smarabio.is')
+      img(src='/images/haskolabio.jpg', alt='Háskólabíó logo')
+    a.col-xs-6.col-sm-4.col-md-2.movielinks(href='http://smarabio.is')
+      img(src='/images/smarabio.jpg', alt='Smárabíó logo')
+    a.col-xs-6.col-sm-4.col-md-2.movielinks(href='http://kvikmyndir.is')
+      img(src='/images/kvikmyndir.png', alt='Kvikmyndir logo')
+    a.col-xs-6.col-sm-4.col-md-2.movielinks(href='http://laugarasbio.is')
+      img(src='/images/laugarasbio.png', alt='Laugarás logo')
+    a.col-xs-6.col-sm-4.col-md-2.movielinks(href='http://sambioin.is')
+      img(src='/images/sambio.png', alt='Sambíó logo')
+    a.col-xs-6.col-sm-4.col-md-2.movielinks(href='http://bioparadis.is')
+      img(src='/images/bioparadis.png', alt='Bíó Paradís logo')

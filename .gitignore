@@ -40,10 +40,6 @@ Thumbs.db
 #######################
 node_modules
 
-# DATABASE #
-############
-.env
-
 # VIM generated files #
 ######################
 ..gitignore.un~
