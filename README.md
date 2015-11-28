@@ -42,6 +42,13 @@ keyrt upp með 'gulp'. Allar villurnar voru t.d á 'require' eða 'console', sem
 meðlimum fannst einstaklega skítið. Leitað var til dæmatímakennara sem benti á
 að þyrfti að nota 'jshintrc' skrá sem skilgreinir reglur og segir 'jshint' hvað
 má og hvað ekki.
+  Eina stóra villan sem við vitum af og höfum ekki náð að laga, er að þegar
+notandi prófar að skipta um mynd inni á prófílnum, og setur ekki gildan link
+heldur eitthvað annað (t.d. "bla"), sækir síðan þann streng í stað þess sem það
+á að sækja þegar við köllum á req.params. Við náðum ekki að átta okkur á því
+hvers vegna, og allar tilraunir okkar til að validate-a urlið virkuðu ekki.
+Við náðum hins vegar að láta það virka með register.js, svo þegar fólk nýskráir
+sig getur það bara sett gildan myndalink.
   Fyrir utan einstakar leiðinlegar villur og tímabil þar sem meðlimir voru stopp
 gekk samvinnan mjög vel. Allir meðlimir þekkjast vel og hafa unnið saman áður og
 voru óhræddir að tjá sig um hin ýmsu mál.
@@ -50,7 +57,7 @@ voru óhræddir að tjá sig um hin ýmsu mál.
 ### Uppsetning
 
 Stilla gagnarunninn í
--
+- 
 
 - npm install
 - gulp

@@ -9,7 +9,6 @@ var threadId;
 router.get('/:id', ensureLoggedIn, entryRender);
 router.post('/:id', postEntries, entryRender);
 router.post('/delete/:id', deleteEntry, entryRender);
-router.post('/', deleteThread);
 
 function ensureLoggedIn(req, res, next){
     if(req.session.user){
@@ -78,26 +77,6 @@ function deleteEntry(req, res, next) {
       return console.error('error fetching entries from pool', err);
     }
     return next();
-  });
-}
-
-function deleteThread(req, res, next) {
-  var querys = 'DELETE FROM entries WHERE threadid=$1';
-  var par = [threadId];
-
-  dbUtils.queryDb(querys, par, function(err) {
-    if(err){
-      return console.error('error fetching entries from pool', err);
-    }
-    querys = 'DELETE FROM threads WHERE id=$1';
-    par = [threadId];
-
-    dbUtils.queryDb(querys, par, function(err) {
-      if(err){
-        return console.error('error fetching entries from pool', err);
-      }
-      res.redirect('/threads');
-    });
   });
 }
 

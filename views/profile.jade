@@ -67,6 +67,12 @@ block content
         div.list-group#threads
           each u in renderData.threads 
             a.list-group-item(href='/entries/#{u.id}')
+              form.pull-right(method='post' action='/profile/delete/#{usern}')
+                input.hidden(type='text' name='threadid' value=u.id)
+                button(type='submit'
+                      value='submit'
+                      class='btn btn-danger btn-sm'
+                      ) Eyða þræði
               p.list-group-item-text #{u.threadname}
               p.list-group-item-text= moment(u.date).calendar()
   br

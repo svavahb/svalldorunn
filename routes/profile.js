@@ -8,6 +8,7 @@ var imagelink, usern;
 
 router.get('/:username', ensureLoggedIn, login);
 router.post('/:username', ensureLoggedIn, changePic);
+router.post('/delete/:username', deleteThread, login);
 
 function ensureLoggedIn(req, res, next){
   if(req.session.user){
@@ -115,6 +116,25 @@ function login(req, res){
                              renderData:renderData,
                              usern:usern
       });
+    });
+  });
+}
+
+function deleteThread(req, res, next) {
+  var querys = 'DELETE FROM entries WHERE threadid=$1';
+  var par = [req.body.threadid];
+
+  dbUtils.queryDb(querys, par, function(err) {
+    if(err){
+      return console.error('error fetching entries from pool', err);
+    }
+    querys = 'DELETE FROM threads WHERE id=$1';
+
+    dbUtils.queryDb(querys, par, function(err) {
+      if(err){
+        return console.error('error fetching entries from pool', err);
+      }
+      return next();
     });
   });
 }
