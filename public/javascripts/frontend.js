@@ -6,7 +6,7 @@ var picButton = document.querySelector('#picButton');
 
 //Ef við erum í threads.jade
 if(picButton===null && entryButton===null) {
-  var threads = document.querySelector('#threads').childNodes[1].childNodes;
+  var threads = document.querySelector('#threads').childNodes;
   var categories = document.querySelector('#categories').childNodes;
 
   //Setja event listener á threaButton og birta formið #newThread
@@ -27,22 +27,13 @@ if(picButton===null && entryButton===null) {
     var str = 'flokkur: '+ cat;
     var regex = /^(notandi).*/;
     for(var j=0; j<threads.length; j++) {
-      //if(regex.test(threads[j].childNodes[3])) {
-        if(threads[j].childNodes[4].innerHTML===str) {
+        if(threads[j].childNodes[1].childNodes[3].innerHTML===str) {
           threads[j].classList.remove('hidden');
+          console.log(threads[j]);
         }
         else {
           threads[j].classList.add('hidden');
         }
-      /*}
-      else {
-        if(threads[j].childNodes[3].innerHTML===str) {
-          threads[j].classList.remove('hidden');
-        }
-        else {
-          threads[j].classList.add('hidden');
-        }
-      }*/
     }
   };
 
