@@ -49,7 +49,7 @@ router.post('/', function(req, res) {
   imageput = req.body.image;
   aboutput = req.body.about;
 
-  if(usernameput === ''){
+  if(!validate.required(usernameput)){
     nousername = true;
     registered = false;
   }

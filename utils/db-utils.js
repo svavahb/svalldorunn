@@ -2,9 +2,9 @@
 
 var pg = require('pg');
 
-var database = 'postgres://mfjipppstqpouz:aA2AfuGMungbamweau7SCtwcjM@' +
-  'ec2-54-217-240-205.eu-west-1.compute.amazonaws.com:5432/de06nqtrlg1lkt';
-//var DATABASE = process.env.DATABASE_URL;
+//var database = 'postgres://mfjipppstqpouz:aA2AfuGMungbamweau7SCtwcjM@' +
+//  'ec2-54-217-240-205.eu-west-1.compute.amazonaws.com:5432/de06nqtrlg1lkt';
+var DATABASE = process.env.DATABASE_URL;
 
 exports.queryDb = function(queryStr, parameters, then) {
   pg.connect(database, function(err, client, done) {
