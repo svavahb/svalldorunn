@@ -8,6 +8,7 @@ var usern;
 /* GET home page. */
 router.get('/', function(req, res) {
   console.log(req.session);
+  console.log(req.session.user);
   if(req.session && req.session.user) {
        console.info(req.session.user);
        loggedin = true;
