@@ -3,6 +3,7 @@
 var threadButton = document.querySelector('#threadButton');
 var entryButton = document.querySelector('#entryButton');
 var picButton = document.querySelector('#picButton');
+var username = document.querySelector('#username').innerHTML;
 
 //Ef við erum í threads.jade
 if(picButton===null && entryButton===null) {
@@ -25,12 +26,23 @@ if(picButton===null && entryButton===null) {
       return;
     }
     var str = 'flokkur: '+ cat;
+    var usernstr = 'notandi: '+username;
     for(var j=0; j<threads.length; j++) {
-      if(threads[j].childNodes[3].innerHTML===str) {
-        threads[j].classList.remove('hidden');
+      if(usernstr===threads[j].childNodes[3]) {
+        if(threads[j].childNodes[4].innerHTML===str) {
+          threads[j].classList.remove('hidden');
+        }
+        else {
+          threads[j].classList.add('hidden');
+        }
       }
       else {
-        threads[j].classList.add('hidden');
+        if(threads[j].childNodes[3].innerHTML===str) {
+          threads[j].classList.remove('hidden');
+        }
+        else {
+          threads[j].classList.add('hidden');
+        }
       }
     }
   };

@@ -58,7 +58,7 @@ function postEntries(req, res, next) {
   var entry = 'INSERT INTO entries (username, entry, date, threadid)' +
    ' VALUES ($1, $2, $3, $4)';
   var info = [req.session.user.username, req.body.textarea, new Date(),
-              threadId];
+              req.params.id];
 
   dbUtils.queryDb(entry, info, function(err) {
     if(err){
