@@ -95,17 +95,19 @@ block content
       div.col-md-10.col-xs-12.list-group#threads
         each u in threads.rows 
           a.list-group-item(href='/entries/#{u.id}')
-            if(session.user.username==u.username)
-              form.pull-right(method='post' action='/threads/delete')
-                input.hidden(type='text' name='threadid' value=u.id)
-                button(type='submit'
-                      value='submit'
-                      class='btn btn-danger btn-sm'
-                      ) Eyða þræði
-            p.list-group-item-text.pThreadname #{u.threadname}
-            p.list-group-item-text= moment(u.date).calendar()
-            p.list-group-item-text notandi: #{u.username}
-            p.list-group-item-text.pCategory flokkur: #{u.category}
+            div.pull-right
+              if(session.user.username==u.username)
+                form(method='post' action='/threads/delete')
+                  input.hidden(type='text' name='threadid' value=u.id)
+                  button(type='submit'
+                        value='submit'
+                        class='btn btn-danger btn-sm'
+                        ) Eyða þræði
+            div
+              p.list-group-item-text.pThreadname #{u.threadname}
+              p.list-group-item-text= moment(u.date).calendar()
+              p.list-group-item-text notandi: #{u.username}
+              p.list-group-item-text.pCategory flokkur: #{u.category}
             
           
       
