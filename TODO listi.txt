@@ -13,3 +13,7 @@ x commenta -> enginn titill
 
 mælir með því að nota jquery í þetta, því að ef við erum með sama klasan á allt þá væri hægt að gera þetta við öll í einu..
 þá væri t.d. hægt að vera með einhver attribute (til þess að skilja milli hvað þau eiga að gera?)
+
+
+
+HÆHÆHÆHÆHÆ
